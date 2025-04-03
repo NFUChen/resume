@@ -1,0 +1,31 @@
+<section class="py-16 px-4">
+  <div class="max-w-4xl mx-auto">
+    <h2 class="text-3xl font-bold text-center mb-12">Skills & Expertise</h2>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      @for (skill of skills; track skill.category) {
+        <div class="card bg-base-100 shadow-xl">
+          <div class="card-body">
+            <div class="flex items-center gap-3 mb-4">
+              <span class="text-3xl">{{ skill.icon }}</span>
+              <h3 class="card-title text-xl">{{ skill.category }}</h3>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              @for (item of skill.items; track item) {
+                <div class="badge badge-primary badge-lg">{{ item }}</div>
+              }
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+
+    <div class="mt-12 text-center">
+      <p class="text-base-content/80">
+        I'm passionate about creating efficient, scalable, and user-friendly web applications. 
+        My experience spans across the full stack, allowing me to build comprehensive solutions 
+        that meet modern web development standards.
+      </p>
+    </div>
+  </div>
+</section> 

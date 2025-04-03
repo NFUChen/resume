@@ -1,0 +1,5 @@
+/* Navigation styles */
+.active {
+  background-color: rgb(var(--primary));
+  color: rgb(var(--primary-content));
+} 
