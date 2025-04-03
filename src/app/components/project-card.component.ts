@@ -14,14 +14,15 @@ export interface Project {
   description?: string;
   contributions?: string;
   buttonText: string;
+  projectLink?: string;
 }
 
 @Component({
   selector: 'app-project-card',
   standalone: true,
   template: `
-    <div class="card w-full bg-base-200 shadow-xl">
-      <div class="card-body">
+    <div class="card w-full bg-base-200 shadow-xl h-full">
+      <div class="card-body overflow-y-auto">
         <h3 class="card-title text-2xl mb-4">{{ project.title }}</h3>
         @if (project.period) {
           <div class="badge badge-primary">{{ project.period }}</div>
@@ -60,10 +61,15 @@ export interface Project {
             <p class="mb-4">{{ project.contributions }}</p>
           }
         </div>
-
-        <div class="card-actions justify-end mt-6">
-          <button class="btn btn-primary">{{ project.buttonText }}</button>
-        </div>
+        @if (project.buttonText.length > 0) {
+          <div class="card-actions justify-end mt-auto">
+            @if (project.projectLink) {
+              <a [href]="project.projectLink" target="_blank" rel="noopener noreferrer" class="btn btn-primary">{{ project.buttonText }}</a>
+            } @else {
+              <button class="btn btn-primary">{{ project.buttonText }}</button>
+            }
+          </div>
+        }
       </div>
     </div>
   `

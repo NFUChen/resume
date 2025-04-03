@@ -17,7 +17,7 @@ interface NavItem {
 })
 export class NavComponent {
   navItems: NavItem[] = [
-    { label: 'Skills', path: '/skills', icon: '💻' },
-    { label: 'Projects', path: '/projects', icon: '🚀' }
+    { label: '技能', path: '/skills', icon: '💻' },
+    { label: '專案', path: '/projects', icon: '🚀' }
   ];
 } 
