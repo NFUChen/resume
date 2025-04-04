@@ -38,12 +38,14 @@ export interface Project {
           }
 
           @if (project.features) {
-            <h4 class="text-xl font-semibold mb-2">主要功能</h4>
-            <ul class="list-disc list-inside space-y-2">
-              @for (feature of project.features; track feature.text) {
-                <li>{{ feature.text }}</li>
-              }
-            </ul>
+            <div class="mb-4">
+              <h4 class="text-xl font-semibold mb-2">主要功能</h4>
+              <ul class="list-disc list-inside space-y-2">
+                @for (feature of project.features; track feature.text) {
+                  <li>{{ feature.text }}</li>
+                }
+              </ul>
+            </div>
           }
 
           @if (project.projectName) {
