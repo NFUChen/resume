@@ -78,7 +78,7 @@ import { Component } from '@angular/core';
             </h3>
             <div class="flex flex-wrap gap-2">
               <div class="badge badge-warning">MongoDB</div>
-              <div class="badge badge-warning">MySQL</div>
+              <div class="badge badge-warning">PostgresSQL</div>
               <div class="badge badge-warning">Redis</div>
             </div>
           </div>
@@ -94,6 +94,7 @@ import { Component } from '@angular/core';
             <div class="flex flex-wrap gap-2">
               <div class="badge badge-neutral">分散式微服務系統及API開發</div>
               <div class="badge badge-neutral">AWS</div>
+              <div class="badge badge-neutral">Azure</div>
               <div class="badge badge-neutral">Docker</div>
               <div class="badge badge-neutral">Docker Compose</div>
               <div class="badge badge-neutral">Docker Swarm</div>
