@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-theme="black">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="utf-8">
   <title>Resume</title>
@@ -9,5 +9,12 @@
 </head>
 <body>
   <app-root></app-root>
+  <script>
+    // Check if a theme preference is stored in localStorage
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+      document.documentElement.setAttribute('data-theme', savedTheme);
+    }
+  </script>
 </body>
 </html>
