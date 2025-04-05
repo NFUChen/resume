@@ -24,16 +24,16 @@ import { Component } from '@angular/core';
               
               <h3 class="text-2xl font-bold mb-4 mt-8">專業技能與技術簡介</h3>
               <ul class="list-disc list-inside space-y-2">
-                <li>程式語言：Golang、Python、TypeScript</li>
+                <li>程式語言：Kotlin、Golang、Python、TypeScript</li>
                 <li>系統開發：熟悉完整開發流程，具備高效能與穩定系統的設計與實作能力</li>
                 <li>設計模式：能依據不同問題場景靈活應用適當的設計模式，以提升程式碼品質</li>
                 <li>雲端技術：具備雲端環境部署與管理應用的豐富經驗</li>
                 <li>後端 API 設計：專注於高效能 API 設計與開發，確保數據處理與服務穩定</li>
-                <li>後端框架：熟悉 Golang （Gin、Fuego）, Python FastAPI</li>
+                <li>後端框架：熟悉 Kotlin （Spring Boot）, Golang （Gin、Fuego）, Python FastAPI</li>
                 <li>資料庫技術：擅長 SQL、MongoDB、Redis，並熟悉 ORM 框架與資料庫客戶端開發</li>
                 <li>作業系統：精通 Linux 與 Windows 環境，能夠靈活進行開發與部署</li>
                 <li>容器化技術：熟悉 Docker、Docker Compose 及 Docker Swarm，實現應用的標準化與可移植性</li>
-                <li>自動化部署：熟練使用 Ansible 進行自動化部署，並能透過 GitLab CI 實現自動化測試與交付</li>
+                <li>自動化部署：熟練使用 Ansible, Github Actions 進行自動化部署實現持續交付</li>
                 <li>通訊協定：熟悉 MQTT、WebSocket、HTTP 等通訊協定，滿足各類應用需求</li>
                 <li>前端技術：具備 React、Angular、TailwindCSS 的開發經驗，能打造良好的使用者體驗</li>
               </ul>
