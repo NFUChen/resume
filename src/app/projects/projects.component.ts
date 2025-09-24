@@ -50,7 +50,7 @@ export class ProjectsComponent {
       features: [
         'Terraform Infrastructure as Code 完整建置',
         'Talos 控制平面節點 + Auto Scaling Group  Spot Worker 節點',
-        'WireGuard VPN 建立Site To Site VPN 連接 VPC 與 Local Lan',
+        'WireGuard 建立Site To Site VPN 連接 Cloud VPC 與 Local LAN',
         'Network Load Balancer (NLB) + Application Load Balancer (ALB)',
         '完整的可觀測性堆疊：Fluent Bit + Jaeger + OpenTelemetry',
         '事件驅動自動擴展：KEDA Autoscaler',
