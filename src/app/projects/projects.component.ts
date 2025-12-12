@@ -42,6 +42,24 @@ export class ProjectsComponent {
 
   projects: Project[] = [
     {
+      title: 'WordPress-as-a-Service 多租戶平台',
+      overview: '基於 AWS 構建的 WordPress 多租戶 SaaS 平台後端基礎設施。專注於雲原生架構設計，實現資源隔離、自動化部署與彈性擴展，支援數百個客戶網站同時運行。此專案為純後端雲基礎設施實作，不包含前端介面與營銷功能。',
+      architecture: 'AWS 多租戶架構：EKS + Terraform IaC + 租戶隔離 + 自動化部署',
+      features: [
+        '多租戶架構：基於 Kubernetes Namespace 的租戶隔離 + 資源配額管理',
+        '自動化部署：客戶一鍵建站 + WordPress 自動安裝 + 域名綁定',
+        'Infrastructure as Code：Terraform 模組化管理 + 環境自動佈建',
+        'Amazon EKS 容器化：SPOT 實例成本優化 + 自動擴展 + 高密度部署',
+        '資料庫隔離：每租戶獨立 RDS 實例 + 自動備份 + 跨區域複製',
+        '儲存管理：EFS 共享儲存 + 租戶資料隔離 + 自動備份策略',
+        '網路架構：ALB 多域名路由 + SSL 憑證自動化 + CDN 加速',
+        '監控告警：CloudWatch 多維度監控 + 租戶資源使用追蹤',
+      ],
+      description: '這是一個純後端雲基礎設施專案，專注於 WordPress SaaS 平台的多租戶架構設計與自動化部署。技術亮點包括：基於 Kubernetes 的租戶隔離策略，確保客戶資料安全與效能獨立；Terraform 驅動的基礎設施自動化，支援客戶網站快速部署；智能資源調度與成本優化，透過 SPOT 實例與動態擴展降低營運成本；完整的 CI/CD 流程與 Infrastructure as Code 實作。注意：此專案範疇僅涵蓋後端雲基礎設施實作，前端使用者介面與營銷功能不在此專案範疇內。',
+      projectLink: '',
+      buttonText: ''
+    },  
+    {
       title: 'Talos Kubernetes 集群架構',
       description: '使用 Terraform 完整建置現代化雲原生平台，包含 Kubernetes 集群、混合雲架構、以及完整的可觀測性堆疊。整個基礎設施採用 Infrastructure as Code 方式管理。',
       technologies: ['Terraform', 'Talos Linux', 'Kubernetes', 'AWS', 'WireGuard', 'Traefik', 'KEDA', 'Fluent Bit', 'Jaeger', 'OpenTelemetry', 'Elasticsearch', 'Kibana'],
