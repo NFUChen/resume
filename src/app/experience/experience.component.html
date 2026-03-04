@@ -1,0 +1,23 @@
+<section class="experience-page">
+  <div class="experience-shell">
+    <header class="experience-header">
+      <h2>學歷與職涯歷程</h2>
+    </header>
+
+    <div class="career-timeline">
+      @for (item of timeline; track item.period) {
+        <article class="career-timeline-item">
+          <div class="career-timeline-marker" aria-hidden="true"></div>
+          <div class="career-timeline-content">
+            <p class="period">{{ item.period }}</p>
+            <div class="timeline-card">
+              <h3>{{ item.title }}</h3>
+              <p class="role">{{ item.role }}</p>
+              <p class="summary">{{ item.summary }}</p>
+            </div>
+          </div>
+        </article>
+      }
+    </div>
+  </div>
+</section>

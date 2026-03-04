@@ -19,6 +19,7 @@ interface NavItem {
 export class NavComponent {
   navItems: NavItem[] = [
     { label: '關於我', path: '/about', icon: '👨‍💻' },
+    { label: '經歷', path: '/experience', icon: '🧭' },
     { label: '技能', path: '/skills', icon: '💻' },
     { label: '專案', path: '/projects', icon: '🚀' }
   ];
