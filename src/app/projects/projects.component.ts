@@ -123,20 +123,6 @@ export class ProjectsComponent {
       description: '這是一個純後端雲基礎設施專案，專注於 WordPress SaaS 平台的多租戶架構設計與自動化部署。技術亮點包括：基於 Kubernetes 的租戶隔離策略，確保客戶資料安全與效能獨立；Terraform 驅動的基礎設施自動化，支援客戶網站快速部署；智能資源調度與成本優化，透過 SPOT 實例與動態擴展降低營運成本；完整的 CI/CD 流程與 Infrastructure as Code 實作。注意：此專案範疇僅涵蓋後端雲基礎設施實作，前端使用者介面與營銷功能不在此專案範疇內。',
       projectLink: '',
       buttonText: ''
-    },
-    {
-      title: '工廠生產資訊看板（RTIF）',
-      period: '2022/10 - 進行中',
-      tooltip: '製造業微型 MES',
-      overview: '於 SRAM 期間參與 RTIF 微型 MES 系統開發，提供管理團隊即時掌握產線關鍵數據的生產資訊看板。',
-      architecture: '即時資料流 + Dashboard 可視化 + 現場營運指標監控',
-      technologies: ['React', 'Node.js', 'WebSocket', 'Dashboard', 'Real-time Data', 'Manufacturing'],
-      features: [
-        '即時呈現生產數量、目標數量、稼動率、停機時間等指標',
-        '協助管理層快速掌握現場狀態並及時調整決策',
-        '強化跨部門對生產現況的共同視圖與溝通效率'
-      ],
-      description: '從製造業場景出發，這個專案強調的是「資料可視化帶動現場決策效率」，並讓技術成果直接反映在日常營運。'
     }
   ];
 }

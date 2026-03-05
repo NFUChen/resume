@@ -120,6 +120,17 @@
   line-height: 1.65;
 }
 
+.achievements {
+  margin: 0.75rem 0 0;
+  padding-left: 1.2rem;
+  color: rgb(var(--base-content) / 0.82);
+}
+
+.achievements li {
+  margin: 0.35rem 0;
+  line-height: 1.6;
+}
+
 @media (max-width: 768px) {
   .timeline-card h3 {
     font-size: 1.35rem;

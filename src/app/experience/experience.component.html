@@ -14,6 +14,13 @@
               <h3>{{ item.title }}</h3>
               <p class="role">{{ item.role }}</p>
               <p class="summary">{{ item.summary }}</p>
+              @if (item.achievements?.length) {
+                <ul class="achievements">
+                  @for (achievement of item.achievements; track achievement) {
+                    <li>{{ achievement }}</li>
+                  }
+                </ul>
+              }
             </div>
           </div>
         </article>
