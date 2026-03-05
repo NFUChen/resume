@@ -26,7 +26,7 @@ export class ExperienceComponent {
       achievements: [
         '在內網連線受限、外部 CI 無法直連資料庫的條件下，主導 Atlas 導入評估並定義可落地的 schema 管理策略。',
         '將資料庫變更流程標準化為可計畫、可套用、可回滾、可檢視的作業模式，提升跨團隊協作與交付穩定性。',
-        '推動以 Terraform 與 Kubernetes Job 串接的執行流程，降低人工操作風險，並強化變更追蹤與治理能力。'
+        '推動以 Terraform 與 Kubernetes Job 串接的執行流程，降低人工操作風險，並強化變更可追溯性與審計能力。'
       ]
     },
     {
