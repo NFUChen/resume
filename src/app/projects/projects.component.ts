@@ -103,7 +103,7 @@ export class ProjectsComponent {
         '基於 FastAPI + Pydantic + ASGI 打造可擴展框架核心'
       ],
       description: 'PySpring 不只是練習專案，而是以框架層思維驗證「抽象設計是否真的能改善團隊開發體驗」的長期實驗。',
-      projectLink: 'https://github.com/PythonSpring/pyspring-core/tree/main/py_spring_core/core',
+      projectLink: 'https://pythonspring.github.io/pyspring-docs',
       buttonText: '查看專案'
     },
     {
