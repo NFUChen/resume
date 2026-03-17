@@ -7,9 +7,9 @@
         </svg>
       </div>
       <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-        @for (item of navItems; track item.path) {
+        @for (item of navItems; track item.page) {
           <li>
-            <a [routerLink]="item.path" routerLinkActive="active" class="flex items-center gap-2">
+            <a [routerLink]="['/']" [queryParams]="{page: item.page}" routerLinkActive="active" class="flex items-center gap-2">
               <span>{{ item.icon }}</span>
               {{ item.label }}
             </a>
@@ -21,9 +21,9 @@
   </div>
   <div class="navbar-center hidden lg:flex">
     <ul class="menu menu-horizontal px-1">
-      @for (item of navItems; track item.path) {
+      @for (item of navItems; track item.page) {
         <li>
-          <a [routerLink]="item.path" routerLinkActive="active" class="flex items-center gap-2">
+          <a [routerLink]="['/']" [queryParams]="{page: item.page}" routerLinkActive="active" class="flex items-center gap-2">
             <span>{{ item.icon }}</span>
             {{ item.label }}
           </a>

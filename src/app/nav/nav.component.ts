@@ -5,7 +5,7 @@ import { ThemeTogglerComponent } from '../components/theme-toggler.component';
 
 interface NavItem {
   label: string;
-  path: string;
+  page: string;
   icon: string;
 }
 
@@ -18,9 +18,9 @@ interface NavItem {
 })
 export class NavComponent {
   navItems: NavItem[] = [
-    { label: '關於我', path: '/about', icon: '👨‍💻' },
-    { label: '經歷', path: '/experience', icon: '🧭' },
-    { label: '技能', path: '/skills', icon: '💻' },
-    { label: '專案', path: '/projects', icon: '🚀' }
+    { label: '關於我', page: 'about', icon: '👨‍💻' },
+    { label: '經歷', page: 'experience', icon: '🧭' },
+    { label: '技能', page: 'skills', icon: '💻' },
+    { label: '專案', page: 'projects', icon: '🚀' }
   ];
 } 
