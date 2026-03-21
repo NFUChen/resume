@@ -20,7 +20,8 @@ export class NavComponent {
   navItems: NavItem[] = [
     { label: '關於我', page: 'about', icon: '👨‍💻' },
     { label: '經歷', page: 'experience', icon: '🧭' },
+    { label: '專案', page: 'projects', icon: '🚀' },
     { label: '技能', page: 'skills', icon: '💻' },
-    { label: '專案', page: 'projects', icon: '🚀' }
+    
   ];
 } 
