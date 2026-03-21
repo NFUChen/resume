@@ -74,13 +74,26 @@ export class ExperienceComponent {
     },
     {
       period: '2022/8 - 2024/8',
-      title: 'SRAM',
+      title: 'SRAM 速聯',
       role: '後端工程師 / 機械製造業 (3000+ employees)',
-      summary: '參與 MES 系統開發，協助工廠數位化轉型，提升生產效率與可視化管理。',
-      achievements: [
-        '參與工廠生產資訊看板（RTIF）開發，提供管理團隊即時掌握產線關鍵數據。',
-        '實作生產數量、目標數量、稼動率與停機時間等核心指標的即時可視化。',
-        '強化跨部門對生產現況的共同視圖，提升現場溝通效率與決策反應速度。'
+      summary: '參與 MES 系統開發，協助工廠數位化轉型。負責生產資訊看板系統（PDB）前後端開發。',
+      achievementGroups: [
+        {
+          category: '生產資訊看板系統架構設計與開發',
+          items: [
+            '客戶端層：於產線端點以樹莓派擷取產線狀態與生產數據，透過 MQTT 非同步送出',
+            '後端層：Spring Boot、Javalin 框架實作微服務架構',
+            '資料庫：PostgreSQL 儲存生產紀錄、MongoDB 儲存設定、Redis 儲存即時狀態與快取',
+            'DevOps：Docker Compose 部署後端服務、Ansible 部署產線端點'
+          ]
+        },
+        {
+          category: '生產數據即時可視化',
+          items: [
+            '實作生產數量、目標數量、稼動率與停機時間等核心指標即時可視化系統。',
+            '強化跨部門對生產現況的共同視圖，提升現場溝通效率與決策反應速度。'
+          ]
+        }
       ]
     },
     {
