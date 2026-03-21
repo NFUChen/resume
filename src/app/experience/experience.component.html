@@ -9,12 +9,26 @@
         <article class="career-timeline-item">
           <div class="career-timeline-marker" aria-hidden="true"></div>
           <div class="career-timeline-content">
-            <p class="period">{{ item.period }}</p>
+            <div class="period-badge">{{ item.period }}</div>
             <div class="timeline-card">
               <h3>{{ item.title }}</h3>
               <p class="role">{{ item.role }}</p>
               <p class="summary">{{ item.summary }}</p>
-              @if (item.achievements?.length) {
+
+              @if (item.achievementGroups?.length) {
+                <div class="achievement-groups">
+                  @for (group of item.achievementGroups; track group.category) {
+                    <div class="achievement-group">
+                      <h4 class="achievement-category">{{ group.category }}</h4>
+                      <ul class="achievement-items">
+                        @for (bullet of group.items; track bullet) {
+                          <li>{{ bullet }}</li>
+                        }
+                      </ul>
+                    </div>
+                  }
+                </div>
+              } @else if (item.achievements?.length) {
                 <ul class="achievements">
                   @for (achievement of item.achievements; track achievement) {
                     <li>{{ achievement }}</li>

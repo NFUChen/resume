@@ -50,15 +50,17 @@
 .career-timeline::before {
   content: '';
   position: absolute;
-  left: 0.45rem;
-  top: 0.4rem;
-  bottom: 1rem;
-  width: 2px;
+  left: 0.4rem;
+  top: 0.2rem;
+  bottom: 0.5rem;
+  width: 3px;
   background: linear-gradient(
     to bottom,
-    rgb(var(--primary) / 0.95),
-    rgb(var(--primary) / 0.25)
+    rgb(var(--primary) / 0.9),
+    rgb(var(--primary) / 0.4),
+    rgb(var(--primary) / 0.15)
   );
+  border-radius: 2px;
 }
 
 .career-timeline-item {
@@ -71,24 +73,30 @@
 .career-timeline-marker {
   position: absolute;
   left: -2.2rem;
-  top: 0.5rem;
-  width: 0.95rem;
-  height: 0.95rem;
+  top: 0.85rem;
+  width: 1.1rem;
+  height: 1.1rem;
   border-radius: 999px;
-  border: 2px solid rgb(var(--primary));
+  border: 2.5px solid rgb(var(--primary));
   background: rgb(var(--base-100));
-  box-shadow: 0 0 0 3px rgb(var(--primary) / 0.15);
+  box-shadow: 0 0 0 4px rgb(var(--primary) / 0.2);
 }
 
 .career-timeline-content {
   width: 100%;
 }
 
-.period {
-  margin: 0 0 0.55rem;
+.period-badge {
+  display: inline-block;
+  padding: 0.35rem 0.85rem;
+  margin-bottom: 0.6rem;
+  background: rgb(var(--primary) / 0.15);
   color: rgb(var(--primary));
   font-weight: 700;
+  font-size: 0.9rem;
   letter-spacing: 0.06em;
+  border-radius: 6px;
+  border: 1px solid rgb(var(--primary) / 0.35);
 }
 
 .timeline-card {
@@ -131,7 +139,61 @@
   line-height: 1.6;
 }
 
+/* 分類列點結構 */
+.achievement-groups {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.achievement-group {
+  border-left: 3px solid rgb(var(--primary) / 0.5);
+  padding-left: 1rem;
+  margin-left: 0.25rem;
+}
+
+.achievement-category {
+  margin: 0 0 0.4rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: rgb(var(--primary));
+}
+
+.achievement-items {
+  margin: 0;
+  padding-left: 1.15rem;
+  color: rgb(var(--base-content) / 0.85);
+  list-style-type: disc;
+}
+
+.achievement-items li {
+  margin: 0.28rem 0;
+  line-height: 1.55;
+  font-size: 0.95rem;
+}
+
 @media (max-width: 768px) {
+  .career-timeline {
+    padding-left: 1.8rem;
+  }
+
+  .career-timeline::before {
+    left: 0.3rem;
+    width: 2px;
+  }
+
+  .career-timeline-marker {
+    left: -1.8rem;
+    width: 0.9rem;
+    height: 0.9rem;
+  }
+
+  .period-badge {
+    font-size: 0.82rem;
+    padding: 0.28rem 0.65rem;
+  }
+
   .timeline-card h3 {
     font-size: 1.35rem;
   }
@@ -139,5 +201,17 @@
   .role,
   .summary {
     font-size: 0.95rem;
+  }
+
+  .achievement-group {
+    padding-left: 0.75rem;
+  }
+
+  .achievement-category {
+    font-size: 0.88rem;
+  }
+
+  .achievement-items li {
+    font-size: 0.9rem;
   }
 }
