@@ -27,7 +27,7 @@ export class ExperienceComponent {
     {
       period: '2024/9 - Present',
       title: '趨勢科技 Trend Micro',
-      role: '後端工程師 / 資安服務業 (5000+ employees)',
+      role: '雲端工程師 / 資安服務業 (5000+ employees)',
       summary: '作為雲端工程師，負責開發和維護企業級資安雲端服務，確保系統可靠性、可維運性與交付效率。',
       achievementGroups: [
         {
