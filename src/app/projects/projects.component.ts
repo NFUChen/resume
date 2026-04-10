@@ -73,6 +73,21 @@ export class ProjectsComponent {
       ]
     },
     {
+      title: 'WireGuard 控制平面 - 個人 Side Project',
+      period: '2025/4 - 2025/6',
+      tooltip: '個人 Side Project',
+      overview: '獨立開發 WireGuard VPN 集中管理平台，將 VPN 伺服器建置、配置推送與日常管理流程標準化。',
+      architecture: 'Spring Boot + Kotlin 後端 API、Angular 前端、PostgreSQL',
+      features: [
+        'WireGuard 伺服器與客戶端生命週期管理（CRUD + 狀態監控）',
+        '動態產生 Ansible Inventory 並管理雲端主機',
+        '自動化部署引擎（遠端配置推送與任務追蹤），支援多種雲端平台',
+        '簡化 Site-to-Site VPN 的設置流程'
+      ],
+      description: '簡化 Site-to-Site VPN 的設置流程，讓使用者可以快速設置 VPN 連線，並管理 VPN 伺服器與客戶端的生命週期。',
+      technologies: ['Kotlin', 'Spring Boot', 'Spring Security', 'Angular', 'TypeScript', 'Tailwind CSS', 'PostgreSQL', 'WireGuard']
+    },
+    {
       title: 'General Authentication Service',
       period: '2025/10 - 進行中',
       tooltip: '跨系統認證平台',
