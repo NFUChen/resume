@@ -43,25 +43,27 @@ export class ProjectsComponent {
 
   projects: Project[] = [
     {
-      title: 'ZTNA 程式碼理解與互動平台',
-      period: '2025/9 - 進行中',
-      tooltip: '公司內部 AI Day 專案',
-      overview: '協助開發者快速理解 200+ Git Repositories 的程式碼理解與互動平台，解決大型程式碼庫上手慢、跨服務關聯難追蹤的痛點。',
-      architecture: 'OpenWebUI 統一入口 + MetaMCP Server 協調多 MCP 服務 + Filesystem MCP 程式碼檢索 + k3s 容器化部署',
+      title: 'PySpring Framework',
+      period: '2023/10 - 進行中',
+      tooltip: '個人開源專案',
+      overview: '自主開發的 Python Web 框架，靈感來自 Spring Boot，聚焦在開發者體驗與框架設計實作。',
+      technologies: ['Python', 'FastAPI', 'Pydantic', 'ASGI', 'OpenAPI', 'Dependency Injection', 'Event-driven'],
       features: [
-        '建立 OpenWebUI + MetaMCP 作為使用者統一互動的入口',
-        '整合 Filesystem MCP，提供檔案搜索與檢索功能',
-        '導入 plocate 快取機制，顯著降低大量檔案掃描時的 I/O 負載',
-        '以 k3s Kubernetes 完成容器化部署，提升環境一致性與可維運性',
+        '提供依賴注入（DI）容器管理，降低模組耦合度',
+        '支援 REST API 開發並自動生成 OpenAPI 文件',
+        '整合事件系統與非同步處理機制',
+        '實作型別安全的多來源注入，提升開發者體驗',
+        '基於 FastAPI + Pydantic + ASGI 打造可擴展框架核心'
       ],
-      description: '',
-      technologies: ['OpenWebUI', 'MetaMCP', 'MCP', 'k3s', 'Docker', 'Python', 'plocate'],
+      description: 'PySpring 不只是練習專案，而是以框架層思維驗證「抽象設計是否真的能改善團隊開發體驗」的長期實驗。',
+      projectLink: 'https://pythonspring.github.io/pyspring-docs',
+      buttonText: '查看專案'
     },
     {
       title: 'Talos Kubernetes 叢集架構',
       period: '2025/1 - 2025/3',
       tooltip: '雲端原生基礎架構',
-      overview: '以 Terraform + Talos 在 AWS 建置生產級 Kubernetes 叢集，實作控制平面、使用Spot Instance作為工作節點降低成本。',
+      overview: '以 Terraform + Talos 在 AWS 建置 Kubernetes 叢集，實作控制平面、使用Spot Instance作為工作節點降低成本。',
       technologies: ['Terraform', 'Talos Linux', 'Kubernetes', 'AWS', 'WireGuard', 'Traefik', 'KEDA', 'Fluent Bit', 'Jaeger', 'OpenTelemetry', 'Elasticsearch', 'Kibana'],
       imageUrl: '',
       architecture: 'Terraform IaC 驅動的 AWS Talos 叢集 + WireGuard Site-to-Site + NLB/ALB 雙層負載均衡',
@@ -102,39 +104,23 @@ export class ProjectsComponent {
       ],
       description: '此服務作為平台級認證中樞，提供微服務登入功能，讓新服務能快速接入並沿用一致的登入機制。目前支援OAuth 2.0（Line、Google）作為登入方式，JWT作為跨服務授權。'
     },
-    {
-      title: 'PySpring Framework',
-      period: '2023/10 - 進行中',
-      tooltip: '個人開源專案',
-      overview: '自主開發的 Python Web 框架，靈感來自 Spring Boot，聚焦在開發者體驗與框架設計實作。',
-      technologies: ['Python', 'FastAPI', 'Pydantic', 'ASGI', 'OpenAPI', 'Dependency Injection', 'Event-driven'],
-      features: [
-        '提供依賴注入（DI）容器管理，降低模組耦合度',
-        '支援 REST API 開發並自動生成 OpenAPI 文件',
-        '整合事件系統與非同步處理機制',
-        '實作型別安全的多來源注入，提升開發者體驗',
-        '基於 FastAPI + Pydantic + ASGI 打造可擴展框架核心'
-      ],
-      description: 'PySpring 不只是練習專案，而是以框架層思維驗證「抽象設計是否真的能改善團隊開發體驗」的長期實驗。',
-      projectLink: 'https://pythonspring.github.io/pyspring-docs',
-      buttonText: '查看專案'
-    },
-    {
-      title: 'WordPress-as-a-Service 多租戶平台',
-      overview: '基於 AWS 構建的 WordPress 多租戶 SaaS 平台後端基礎設施。專注於雲原生架構設計，實現資源隔離、自動化部署與彈性擴展，預期支援數百個客戶網站同時運行。此專案為純後端雲基礎設施實作，不包含前端介面與營銷功能。',
-      architecture: 'AWS 多租戶架構：EKS + Terraform IaC + 租戶隔離 + 自動化部署',
-      features: [
-        '多租戶架構：基於 Kubernetes Namespace 的租戶隔離',
-        '自動化部署：客戶一鍵建站 + WordPress 自動安裝 + 域名綁定',
-        'Infrastructure as Code：Terraform 模組化管理 + 環境自動佈建',
-        'Amazon EKS 容器化：SPOT 實例成本優化 + 自動擴展 + 高密度部署',
-        '資料庫隔離：每租戶獨立 RDS 實例 + 自動備份 + 跨區域複製',
-        '儲存管理：EFS 共享儲存 + 租戶資料隔離 + 自動備份策略',
-        '網路架構：ALB 多域名路由 + SSL 憑證自動化',
-      ],
-      description: '這是一個純後端雲基礎設施專案，專注於 WordPress SaaS 平台的多租戶架構設計與自動化部署。技術亮點包括：基於 Kubernetes 的租戶隔離策略，確保客戶資料安全與效能獨立；Terraform 驅動的基礎設施自動化，支援客戶網站快速部署；智能資源調度與成本優化，透過 SPOT 實例與動態擴展降低營運成本。注意：此專案範疇僅涵蓋後端雲基礎設施實作，前端使用者介面與營銷功能不在此專案範疇內。',
-      projectLink: '',
-      buttonText: ''
-    }
+  //   {
+  //     title: 'WordPress-as-a-Service 多租戶平台',
+  //     overview: '基於 AWS 構建的 WordPress 多租戶 SaaS 平台後端基礎設施。專注於雲原生架構設計，實現資源隔離、自動化部署與彈性擴展，預期支援數百個客戶網站同時運行。此專案為純後端雲基礎設施實作，不包含前端介面與營銷功能。',
+  //     architecture: 'AWS 多租戶架構：EKS + Terraform IaC + 租戶隔離 + 自動化部署',
+  //     features: [
+  //       '多租戶架構：基於 Kubernetes Namespace 的租戶隔離',
+  //       '自動化部署：客戶一鍵建站 + WordPress 自動安裝 + 域名綁定',
+  //       'Infrastructure as Code：Terraform 模組化管理 + 環境自動佈建',
+  //       'Amazon EKS 容器化：SPOT 實例成本優化 + 自動擴展 + 高密度部署',
+  //       '資料庫隔離：每租戶獨立 RDS 實例 + 自動備份 + 跨區域複製',
+  //       '儲存管理：EFS 共享儲存 + 租戶資料隔離 + 自動備份策略',
+  //       '網路架構：ALB 多域名路由 + SSL 憑證自動化',
+  //     ],
+  //     description: '這是一個純後端雲基礎設施專案，專注於 WordPress SaaS 平台的多租戶架構設計與自動化部署。技術亮點包括：基於 Kubernetes 的租戶隔離策略，確保客戶資料安全與效能獨立；Terraform 驅動的基礎設施自動化，支援客戶網站快速部署；智能資源調度與成本優化，透過 SPOT 實例與動態擴展降低營運成本。注意：此專案範疇僅涵蓋後端雲基礎設施實作，前端使用者介面與營銷功能不在此專案範疇內。',
+  //     projectLink: '',
+  //     buttonText: ''
+  //   }
+  // ];
   ];
 }
