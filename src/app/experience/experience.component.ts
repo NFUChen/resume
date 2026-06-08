@@ -47,27 +47,18 @@ export class ExperienceComponent {
         },
         {
           category: '資安修補',
-          items: ['修補多項 OpenSSH 漏洞，含停用不安全的 cipher 模式']
+          items: ['修補多項 OpenSSH 漏洞，確保內部系統安全性']
         },
         {
           category: '新區域部署與多可用區架構',
           items: [
-            '參與泰國區從 staging 到 production 的端到端部署',
-            '含多可用區設定、負載均衡與監控告警串接'
+            '參與泰國區從 staging 到 production 的端到端部署'
           ]
         },
         {
           category: '產品協定支援與 API 強化',
           items: [
             '參與產品 ICMP（網路連通性檢測）協定支援開發，打通端到端健康檢查流程',
-            '參與雲端資料庫連線與錯誤處理改善，提升 API 穩定性與可測試性'
-          ]
-        },
-        {
-          category: '內部工具鏈建置',
-          items: [
-            '從零建立 SQL 語法檢查工具，串接 Docker、CI 與雲端儲存',
-            '完成跨雲 container registry 的映像發布自動化'
           ]
         }
       ]
