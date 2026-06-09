@@ -31,28 +31,15 @@ export class ExperienceComponent {
       summary: '作為雲端工程師，負責開發和維護企業級資安雲端服務，確保系統可靠性、可維運性與交付效率。',
       achievementGroups: [
         {
-          category: '資料庫 Schema 變更管理',
-          items: [
-            '在內網連線受限、外部 CI 無法直連的條件下，主導 schema 版本管理導入評估',
-            '將變更流程標準化為可計畫、可套用、可回滾、可檢視的作業模式',
-            '以 Terraform 與 Kubernetes Job 串接執行流程，強化變更可追溯性'
-          ]
-        },
-        {
-          category: '跨雲端金鑰輪換',
-          items: [
-            '設計並實作 multi-cloud（AWS、Azure、Oracle）金鑰輪換腳本與 CI/CD 自動化',
-            '將工具打包為 standalone executable 以簡化佈署'
-          ]
-        },
-        {
-          category: '資安修補',
-          items: ['修補多項 OpenSSH 漏洞，確保內部系統安全性']
-        },
-        {
           category: '新區域部署與多可用區架構',
           items: [
-            '參與泰國區從 staging 到 production 的端到端部署'
+            '參與泰國 VPN 區網路節點從 staging 到 production 的端到端部署'
+          ]
+        },
+        {
+          category: '網路節點故障轉移改善',
+          items: [
+            '強化網路節點的故障轉移機制，提升跨區域服務連線的穩定性與可用性'
           ]
         },
         {
@@ -60,6 +47,16 @@ export class ExperienceComponent {
           items: [
             '參與產品 ICMP（網路連通性檢測）協定支援開發，打通端到端健康檢查流程',
           ]
+        },
+        {
+          category: '跨雲端金鑰輪換',
+          items: [
+            '設計並實作 multi-cloud（AWS、Azure、Oracle）金鑰輪換腳本與 CI/CD 自動化'
+          ]
+        },
+        {
+          category: '資安修補',
+          items: ['修補多項 OpenSSH 漏洞，確保內部系統安全性']
         }
       ]
     },
