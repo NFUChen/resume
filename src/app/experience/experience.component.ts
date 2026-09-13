@@ -25,70 +25,81 @@ interface TimelineItem {
 export class ExperienceComponent {
   timeline: TimelineItem[] = [
     {
-      period: '2024/9 - Present',
-      title: '趨勢科技 Trend Micro',
-      role: '雲端工程師 / 資安服務業 (5000+ employees)',
-      summary: '作為雲端工程師，負責開發和維護企業級資安雲端服務，確保系統可靠性、可維運性與交付效率。',
+      period: 'Sep 2024 - Present',
+      title: 'Trend Micro',
+      role: 'Cloud Infrastructure Engineer / Zero Trust Network Access · Security SaaS Platform & AI Infrastructure (TrendAI)',
+      summary: 'Building and automating production infrastructure for a Zero Trust Network Access / Security SaaS platform, and supporting AI infrastructure (Ray/vLLM model serving) for Trend AI.',
       achievementGroups: [
         {
-          category: '新區域部署與多可用區架構',
+          category: 'Reliability engineering',
           items: [
-            '參與泰國 VPN 區網路節點從 staging 到 production 的端到端部署'
+            'Designed and shipped a PoP failover system replacing stale heartbeat checks with Azure Traffic Manager endpoint-health monitoring and Redis distributed locking, improving cross-region VPN connection reliability'
           ]
         },
         {
-          category: '網路節點故障轉移改善',
+          category: 'Security automation',
           items: [
-            '強化網路節點的故障轉移機制，提升跨區域服務連線的穩定性與可用性'
+            'Built and automated a multi-cloud API key and credential rotation pipeline across AWS, Azure, and Oracle Cloud, replacing manual rotation workflows and reducing credential exposure risk'
           ]
         },
         {
-          category: '產品協定支援與 API 強化',
+          category: 'Infrastructure delivery',
           items: [
-            '參與產品 ICMP（網路連通性檢測）協定支援開發，打通端到端健康檢查流程',
+            'Led end-to-end deployment of a new regional VPN network node in Thailand, from staging through production, including multi-availability-zone architecture design and rollout coordination'
           ]
         },
         {
-          category: '跨雲端金鑰輪換',
+          category: 'AI serving pipeline',
           items: [
-            '設計並實作 multi-cloud（AWS、Azure、Oracle）金鑰輪換腳本與 CI/CD 自動化'
+            'Improved Ray-based LLM model-serving infrastructure by strengthening Helm chart CI/CD, chart build/version tracking, and JFrog Artifactory OCI image publishing for downstream deployments'
           ]
         },
         {
-          category: '資安修補',
-          items: ['修補多項 OpenSSH 漏洞，確保內部系統安全性']
+          category: 'Observability',
+          items: [
+            'Designed Prometheus-based observability for vLLM inference services using Prometheus Operator ServiceMonitor and PrometheusRule, covering availability, latency, and capacity signals'
+          ]
+        },
+        {
+          category: 'Incident response',
+          items: [
+            'Introduced tiered alerting for inference availability, latency, and capacity to improve production visibility and reduce incident response time'
+          ]
         }
       ]
     },
     {
-      period: '2022/8 - 2024/8',
-      title: 'SRAM 速聯',
-      role: '後端工程師 / 機械製造業 (3000+ employees)',
-      summary: '參與 MES 系統開發，協助工廠數位化轉型。負責生產資訊看板系統（PDB）前後端開發。',
+      period: 'Sep 2022 - Aug 2024',
+      title: 'SRAM',
+      role: 'Backend / DevOps Engineer / MES & Factory Digitalization Platform for Industrial Manufacturing',
+      summary: 'Built a production dashboard system end-to-end for a factory digitalization platform, from edge clients to backend services and data storage.',
       achievementGroups: [
         {
-          category: '生產資訊看板系統架構設計與開發',
+          category: 'End-to-end system design',
           items: [
-            '客戶端層：於產線端點以樹莓派擷取產線狀態與生產數據，透過 MQTT 非同步送出',
-            '後端層：Spring Boot、Javalin 框架實作微服務架構',
-            '資料庫：PostgreSQL 儲存生產紀錄、MongoDB 儲存設定、Redis 儲存即時狀態與快取',
-            'DevOps：Docker Compose 部署後端服務、Ansible 部署產線端點'
+            'Designed and built a production dashboard system end-to-end, including Raspberry Pi edge clients publishing production data over MQTT, Spring Boot / Javalin microservices, and PostgreSQL / MongoDB / Redis data storage'
           ]
         },
         {
-          category: '生產數據即時可視化',
+          category: 'Operations & automation',
           items: [
-            '實作生產數量、目標數量、稼動率與停機時間等核心指標即時可視化系統。',
-            '強化跨部門對生產現況的共同視圖，提升現場溝通效率與決策反應速度。'
+            'Implemented real-time production, utilization, and downtime visibility',
+            'Automated client-server deployment with Docker Compose and Ansible provisioning'
           ]
         }
       ]
     },
     {
       period: '2020/9 - 2022/6',
-      title: '國立虎尾科技大學',
-      role: '工業工程管理研究所 碩士',
-      summary: '建立紮實的工程管理學術基礎，培養系統性思考與問題解決能力。'
+      title: 'National Formosa University',
+      role: 'M.S. in Industrial Engineering and Management',
+      summary: 'Built a solid academic foundation in engineering management, developing systems thinking and problem-solving skills.'
+    },
+    {
+      period: '2015 - 2020',
+      title: 'National Formosa University',
+      role: 'B.S. in Industrial Engineering and Management',
+      summary: 'Completed undergraduate studies in industrial engineering and management.'
     }
   ];
 }

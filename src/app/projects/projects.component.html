@@ -1,10 +1,15 @@
-<section class="py-16 px-4">
+<section class="projects-page py-16 px-4">
   <div class="max-w-6xl mx-auto">
-    <h2 class="text-3xl font-bold text-center mb-12">過往專案</h2>
+    <header class="projects-header text-center mb-12">
+      <span class="section-kicker">BUILD · AUTOMATE · OPERATE</span>
+      <h2 class="text-4xl font-black mt-3">Infrastructure Projects</h2>
+      <p class="max-w-2xl mx-auto mt-4 text-base-content/65">Production-minded systems built around cloud infrastructure, automation, networking, and developer experience.</p>
+    </header>
     
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      @for (project of projects; track project.title) {
-        <div class="card bg-base-100 shadow-xl">
+      @for (project of projects; track project.title; let index = $index) {
+        <article class="project-card card bg-base-100 shadow-xl rise-in hover-lift" [style.animation-delay.ms]="index * 90">
+          <div class="project-accent" aria-hidden="true"></div>
           @if (project.imageUrl) {
             <figure>
               <img [src]="project.imageUrl" [alt]="project.title" class="w-full h-48 object-cover" />
@@ -12,33 +17,33 @@
           }
           <div class="card-body">
             <div class="mb-2">
-              <h3 class="card-title">{{ project.title }}</h3>
+              <h3 class="card-title text-xl leading-snug">{{ project.title }}</h3>
             </div>
 
-            <div class="flex flex-wrap gap-2 mb-2">
+            <div class="flex flex-wrap gap-2 mb-3">
               @if (project.period) {
-                <div class="badge badge-outline">{{ project.period }}</div>
+                <div class="badge badge-outline badge-sm">{{ project.period }}</div>
               }
               @if (project.tooltip) {
-                <div class="badge badge-primary">{{ project.tooltip }}</div>
+                <div class="badge badge-primary badge-sm">{{ project.tooltip }}</div>
               }
             </div>
-            <p class="text-base-content/80">{{ project.description || project.overview }}</p>
+            <p class="text-base-content/75 leading-relaxed">{{ project.description || project.overview }}</p>
             
             @if (project.architecture) {
-              <div class="mt-4">
-                <h4 class="text-sm font-semibold text-base-content/70 mb-1">架構設計</h4>
-                <p class="text-sm text-base-content/80">{{ project.architecture }}</p>
+              <div class="architecture-note mt-4">
+                <h4 class="section-label mb-1">Architecture</h4>
+                <p class="text-sm text-base-content/75">{{ project.architecture }}</p>
               </div>
             }
             
             @if (project.features && project.features.length > 0) {
               <div class="mt-4">
-                <h4 class="text-sm font-semibold text-base-content/70 mb-2">主要功能</h4>
+                <h4 class="section-label mb-2">Highlights</h4>
                 <ul class="text-sm text-base-content/80 space-y-1">
                   @for (feature of project.features.slice(0, isProjectExpanded(project.title) ? project.features.length : 3); track feature) {
-                    <li class="flex items-start">
-                      <span class="text-primary mr-2">•</span>
+                    <li class="feature-item flex items-start">
+                      <span class="feature-bullet" aria-hidden="true"></span>
                       <span>{{ feature }}</span>
                     </li>
                   }
@@ -48,9 +53,9 @@
                         (click)="toggleProjectExpansion(project.title)"
                         class="text-primary text-xs hover:text-primary-focus cursor-pointer underline">
                         @if (isProjectExpanded(project.title)) {
-                          收起功能列表
+                          Show less
                         } @else {
-                          展開 + {{ project.features.length - 3 }} 更多...
+                          Show {{ project.features.length - 3 }} more...
                         }
                       </button>
                     </li>
@@ -62,7 +67,7 @@
             @if (project.technologies && project.technologies.length > 0) {
               <div class="flex flex-wrap gap-2 my-4">
                 @for (tech of project.technologies; track tech) {
-                  <div class="badge badge-outline text-xs tech-badge">{{ tech }}</div>
+                  <div class="badge badge-soft badge-primary text-xs tech-badge">{{ tech }}</div>
                 }
               </div>
             }
@@ -70,7 +75,7 @@
             <div class="card-actions justify-end">
               @if (project.projectLink) {
                 <a [href]="project.projectLink" target="_blank" class="btn btn-primary btn-sm">
-                  {{ project.buttonText || '查看詳情' }}
+                  {{ project.buttonText || 'View details' }}
                 </a>
               } @else if (project.githubUrl) {
                 <a [href]="project.githubUrl" target="_blank" class="btn btn-primary btn-sm">
@@ -85,7 +90,7 @@
               }
             </div>
           </div>
-        </div>
+        </article>
       }
     </div>
   </div>
