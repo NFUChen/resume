@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { CORE_SKILLS, EXPERIENCE, PROFILE, PROJECTS } from '../data/resume.data';
 import { CHAT_CONFIG } from './chat.config';
 
 export interface ChatMessage {
@@ -14,20 +15,63 @@ interface ChatCompletionChunk {
   }>;
 }
 
-const SYSTEM_PROMPT = `You are the portfolio assistant for William Chen, an Infrastructure / Site Reliability Engineer in Taiwan. Answer only questions about William's professional experience, skills, education, availability, and projects. If a question is unrelated, politely redirect the visitor to those topics. Do not invent details. Keep answers concise and professional.
+function buildResumeContext(): string {
+  const skills = Object.entries(CORE_SKILLS)
+    .map(([category, items]) => `- ${category}: ${items.join(', ')}`)
+    .join('\n');
 
-Verified profile context:
-- 4+ years building and automating production infrastructure across AWS, Microsoft Azure, Oracle Cloud Infrastructure, and Kubernetes.
-- Trend Micro, Cloud Infrastructure Engineer (Sep 2024-present): production reliability for a Zero Trust Network Access / Security SaaS platform; multi-cloud credential rotation; Thailand regional VPN node deployment; Ray-based LLM serving delivery; Helm CI/CD; JFrog OCI publishing; Prometheus ServiceMonitor and PrometheusRule observability for vLLM.
-- SRAM, Backend / DevOps Engineer (Sep 2022-Aug 2024): factory production dashboard using Raspberry Pi, MQTT, Spring Boot/Javalin, PostgreSQL, MongoDB, Redis, Docker Compose, and Ansible.
-- Skills: Kubernetes, Helm, Docker, Terraform, Ansible, GitHub Actions, Linux, AWS, Azure, OCI, Ray, vLLM, Prometheus, Grafana, OpenTelemetry, WireGuard, Python, Go, Java/Spring Boot, TypeScript/Angular.
-- Education: M.S. and B.S. in Industrial Engineering and Management, National Formosa University.
-- Projects:
-  1. PySpring: Python framework around FastAPI with annotation-driven IoC, Pydantic properties, lifecycle hooks, middleware, starter modules, and queued in-process pub/sub events.
-  2. Talos Kubernetes on AWS: Terraform-provisioned VPC, Talos control plane, Spot worker Auto Scaling Group, ALB/Traefik ingress, API NLB, cluster autoscaling, and WireGuard connectivity.
-  3. WireGuard Control Plane: Angular + Kotlin/Spring Boot + PostgreSQL platform that generates WireGuard configuration and Ansible inventories, executes playbooks over SSH, and tracks deployment jobs.
-- Location: Chiayi County, Taiwan. Open to Taipei hybrid roles.
-- Links: LinkedIn linkedin.com/in/william-chen-3258a6199; GitHub github.com/NFUChen.`;
+  const experience = EXPERIENCE
+    .map(item => {
+      const achievements = item.achievementGroups
+        ?.flatMap(group => group.items.map(detail => `  - ${group.category}: ${detail}`))
+        .join('\n');
+      return `- ${item.title} | ${item.role} | ${item.period}\n  Summary: ${item.summary}${achievements ? `\n${achievements}` : ''}`;
+    })
+    .join('\n');
+
+  const projects = PROJECTS
+    .map(project => [
+      `- ${project.title}${project.period ? ` | ${project.period}` : ''}`,
+      `  Summary: ${project.description ?? project.overview ?? ''}`,
+      project.architecture ? `  Architecture: ${project.architecture}` : '',
+      project.features?.map(feature => `  - ${feature}`).join('\n') ?? '',
+      project.technologies?.length ? `  Technologies: ${project.technologies.join(', ')}` : '',
+      project.githubUrl ? `  GitHub: ${project.githubUrl}` : '',
+      project.projectLink ? `  Documentation: ${project.projectLink}` : ''
+    ].filter(Boolean).join('\n'))
+    .join('\n');
+
+  return `You are the portfolio assistant for ${PROFILE.name}, a ${PROFILE.headline} based in ${PROFILE.location}.
+
+Your role:
+- Answer questions only about William's professional experience, engineering skills, education, availability, and projects.
+- Use only the verified context below. Never invent employers, metrics, responsibilities, technologies, dates, certifications, or project capabilities.
+- Distinguish production work from personal/open-source projects.
+- When discussing architecture, explain the engineering decisions and component relationships represented in the context without claiming unlisted scale or outcomes.
+- If information is not present, say that it is not specified and suggest contacting William through LinkedIn.
+- If a question is unrelated to William's portfolio, politely redirect to his experience, skills, or projects.
+- Keep answers concise and professional. Use Markdown lists or short sections when that improves readability.
+- Reply in the language used by the visitor.
+
+PROFILE
+Name: ${PROFILE.name}
+Headline: ${PROFILE.headline}
+Focus: ${PROFILE.focus.join(', ')}
+Location: ${PROFILE.location}
+Availability: ${PROFILE.availability}
+Professional summary: ${PROFILE.summary}
+LinkedIn: ${PROFILE.linkedin}
+GitHub: ${PROFILE.github}
+
+CORE SKILLS
+${skills}
+
+EXPERIENCE AND EDUCATION
+${experience}
+
+PROJECTS
+${projects}`;
+}
 
 @Injectable({ providedIn: 'root' })
 export class ChatService {
@@ -42,7 +86,7 @@ export class ChatService {
         model: CHAT_CONFIG.model,
         stream: true,
         messages: [
-          { role: 'system', content: SYSTEM_PROMPT },
+          { role: 'system', content: buildResumeContext() },
           ...messages.slice(-CHAT_CONFIG.maxHistoryMessages)
         ]
       }),
