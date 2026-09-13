@@ -14,6 +14,7 @@ export class ChatBubbleComponent implements OnDestroy {
   private readonly chatService = inject(ChatService);
   private abortController?: AbortController;
   private closeTimer?: ReturnType<typeof setTimeout>;
+  private isComposing = false;
 
   @ViewChild('messageInput') messageInput?: ElementRef<HTMLTextAreaElement>;
   @ViewChild('messageList') messageList?: ElementRef<HTMLDivElement>;
@@ -58,11 +59,28 @@ export class ChatBubbleComponent implements OnDestroy {
     }, 220);
   }
 
+  handleCompositionStart(): void {
+    this.isComposing = true;
+  }
+
+  handleCompositionEnd(): void {
+    this.isComposing = false;
+  }
+
   handleKeydown(event: KeyboardEvent): void {
-    if (event.key === 'Enter' && !event.shiftKey) {
-      event.preventDefault();
-      void this.sendMessage();
+    if (event.key !== 'Enter' || event.shiftKey) {
+      return;
     }
+
+    // Enter confirms the active IME candidate (for example, Zhuyin input).
+    // keyCode 229 is retained as a fallback for browsers with incomplete
+    // KeyboardEvent.isComposing support.
+    if (this.isComposing || event.isComposing || event.keyCode === 229) {
+      return;
+    }
+
+    event.preventDefault();
+    void this.sendMessage();
   }
 
   async sendMessage(): Promise<void> {
