@@ -120,6 +120,52 @@
   box-shadow: 0 0 0 3px color-mix(in oklab, var(--color-primary) 16%, transparent);
 }
 
+/* Keep card actions on a single line; scroll horizontally on narrow cards. */
+.actions-row {
+  flex-wrap: nowrap;
+  align-items: center;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.actions-row::-webkit-scrollbar {
+  display: none;
+}
+
+.architecture-panel {
+  position: relative;
+  scroll-margin-top: 5.5rem;
+  overflow: hidden;
+  border: 1px solid color-mix(in oklab, var(--color-base-content) 10%, transparent);
+  background: color-mix(in oklab, var(--color-base-100) 92%, transparent);
+  backdrop-filter: blur(16px);
+}
+
+.architecture-header {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.architecture-heading {
+  min-width: 0;
+  text-align: center;
+}
+
+.architecture-heading .card-title {
+  justify-content: center;
+}
+
+.architecture-counter {
+  margin-bottom: 0.2rem;
+  color: var(--color-primary);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
 .tech-badge {
   white-space: nowrap;
   width: auto;
@@ -129,5 +175,21 @@
 @media (max-width: 768px) {
   .projects-page {
     padding-top: 2.5rem;
+  }
+
+  .project-carousel {
+    grid-template-columns: 1fr 1fr;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+
+  .project-carousel .project-card {
+    grid-column: 1 / -1;
+    grid-row: 1;
+  }
+
+  .carousel-control {
+    grid-row: 2;
+    justify-self: center;
   }
 }
