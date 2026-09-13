@@ -7,7 +7,7 @@
     </header>
     
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      @for (project of projects; track project.title; let index = $index) {
+      @for (project of projects; track project.id; let index = $index) {
         <article class="project-card card bg-base-100 shadow-xl rise-in hover-lift" [style.animation-delay.ms]="index * 90">
           <div class="project-accent" aria-hidden="true"></div>
           @if (project.imageUrl) {
@@ -41,7 +41,7 @@
               <div class="mt-4">
                 <h4 class="section-label mb-2">Highlights</h4>
                 <ul class="text-sm text-base-content/80 space-y-1">
-                  @for (feature of project.features.slice(0, isProjectExpanded(project.title) ? project.features.length : 3); track feature) {
+                  @for (feature of project.features.slice(0, isProjectExpanded(project.id) ? project.features.length : 3); track feature) {
                     <li class="feature-item flex items-start">
                       <span class="feature-bullet" aria-hidden="true"></span>
                       <span>{{ feature }}</span>
@@ -50,9 +50,9 @@
                   @if (project.features.length > 3) {
                     <li class="mt-2">
                       <button 
-                        (click)="toggleProjectExpansion(project.title)"
+                        (click)="toggleProjectExpansion(project.id)"
                         class="text-primary text-xs hover:text-primary-focus cursor-pointer underline">
-                        @if (isProjectExpanded(project.title)) {
+                        @if (isProjectExpanded(project.id)) {
                           Show less
                         } @else {
                           Show {{ project.features.length - 3 }} more...
@@ -73,15 +73,20 @@
             }
             
             <div class="card-actions justify-end">
-              @if (project.title === 'Talos Kubernetes Cluster on AWS') {
-                <button type="button" class="btn btn-outline btn-primary btn-sm" (click)="showTalosArchitecture = !showTalosArchitecture" [attr.aria-expanded]="showTalosArchitecture">
+              @if (project.architectureDiagram) {
+                <button
+                  type="button"
+                  class="btn btn-outline btn-primary btn-sm"
+                  (click)="toggleArchitecture(project.id)"
+                  [attr.aria-expanded]="isArchitectureExpanded(project.id)"
+                >
                   <svg class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                     <rect x="3" y="3" width="7" height="7" rx="1" />
                     <rect x="14" y="3" width="7" height="7" rx="1" />
                     <rect x="8.5" y="14" width="7" height="7" rx="1" />
                     <path d="M6.5 10v2h11v-2M12 12v2" />
                   </svg>
-                  {{ showTalosArchitecture ? 'Hide architecture' : 'View architecture' }}
+                  {{ isArchitectureExpanded(project.id) ? 'Hide architecture' : 'View architecture' }}
                 </button>
               }
               @if (project.projectLink) {
@@ -109,17 +114,17 @@
       }
     </div>
 
-    @if (showTalosArchitecture) {
-      <div class="architecture-panel card bg-base-100 shadow-xl mt-10 rise-in">
-        <div class="project-accent" aria-hidden="true"></div>
-        <div class="card-body">
-          <h3 class="card-title text-xl">Talos Kubernetes Cluster — Architecture</h3>
-          <p class="text-sm text-base-content/70 mb-4">
-            Terraform-provisioned AWS infrastructure: public ALB to Traefik NodePort for workload traffic, a dedicated NLB for the Kubernetes API, Spot-backed worker nodes, and a WireGuard gateway bridging on-prem and remote sites.
-          </p>
-          <app-talos-architecture></app-talos-architecture>
+    @for (project of projects; track project.id) {
+      @if (project.architectureDiagram && isArchitectureExpanded(project.id)) {
+        <div class="architecture-panel card bg-base-100 shadow-xl mt-10 rise-in">
+          <div class="project-accent" aria-hidden="true"></div>
+          <div class="card-body">
+            <h3 class="card-title text-xl">{{ project.title }} — Architecture</h3>
+            <p class="text-sm text-base-content/70 mb-4">{{ project.architectureDiagram.summary }}</p>
+            <ng-container *ngComponentOutlet="project.architectureDiagram.component"></ng-container>
+          </div>
         </div>
-      </div>
+      }
     }
   </div>
 </section> 

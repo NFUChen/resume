@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, Type } from '@angular/core';
+import { CommonModule, NgComponentOutlet } from '@angular/common';
 import { TalosArchitectureComponent } from './talos-architecture.component';
+import { WireGuardArchitectureComponent } from './wireguard-architecture.component';
 
 interface Project {
+  id: string;
   title: string;
   period?: string;
   description?: string;
@@ -18,33 +20,51 @@ interface Project {
   buttonText?: string;
   projectName?: string;
   contributions?: string;
+  /** Rendered inside the expandable architecture panel when present. */
+  architectureDiagram?: {
+    component: Type<unknown>;
+    summary: string;
+  };
 }
 
 @Component({
   selector: 'app-projects',
   standalone: true,
-  imports: [CommonModule, TalosArchitectureComponent],
+  imports: [CommonModule, NgComponentOutlet],
   templateUrl: './projects.component.html',
   styleUrls: ['./projects.component.css']
 })
 export class ProjectsComponent {
   expandedProjects: Set<string> = new Set();
-  showTalosArchitecture = false;
+  expandedArchitectures: Set<string> = new Set();
 
-  toggleProjectExpansion(projectTitle: string): void {
-    if (this.expandedProjects.has(projectTitle)) {
-      this.expandedProjects.delete(projectTitle);
+  toggleProjectExpansion(projectId: string): void {
+    if (this.expandedProjects.has(projectId)) {
+      this.expandedProjects.delete(projectId);
     } else {
-      this.expandedProjects.add(projectTitle);
+      this.expandedProjects.add(projectId);
     }
   }
 
-  isProjectExpanded(projectTitle: string): boolean {
-    return this.expandedProjects.has(projectTitle);
+  isProjectExpanded(projectId: string): boolean {
+    return this.expandedProjects.has(projectId);
+  }
+
+  toggleArchitecture(projectId: string): void {
+    if (this.expandedArchitectures.has(projectId)) {
+      this.expandedArchitectures.delete(projectId);
+    } else {
+      this.expandedArchitectures.add(projectId);
+    }
+  }
+
+  isArchitectureExpanded(projectId: string): boolean {
+    return this.expandedArchitectures.has(projectId);
   }
 
   projects: Project[] = [
     {
+      id: 'pyspring',
       title: 'PySpring Framework',
       period: '2023/10 - Present',
       tooltip: 'Open-source project',
@@ -62,6 +82,7 @@ export class ProjectsComponent {
       buttonText: 'View docs'
     },
     {
+      id: 'talos-aws',
       title: 'Talos Kubernetes Cluster on AWS',
       period: '2025/1 - 2025/3',
       tooltip: 'Cloud-native infrastructure',
@@ -74,23 +95,32 @@ export class ProjectsComponent {
         'Spot Instances in an Auto Scaling Group as worker nodes to cut compute cost',
         'WireGuard site-to-site VPN connecting the on-prem environment to the AWS VPC',
         'Application Load Balancer (ALB) with Traefik Ingress Controller as the cluster traffic entry point'
-      ]
+      ],
+      architectureDiagram: {
+        component: TalosArchitectureComponent,
+        summary: 'Terraform-provisioned AWS infrastructure: public ALB to Traefik NodePort for workload traffic, a dedicated NLB for the Kubernetes API, Spot-backed worker nodes, and a WireGuard gateway bridging on-prem and remote sites.'
+      }
     },
     {
+      id: 'wg-control-plane',
       title: 'WireGuard Control Plane',
       period: '2025/4 - 2025/6',
       tooltip: 'Personal side project',
       overview: 'Built a centralized multi-cloud WireGuard VPN management platform that standardizes server provisioning, config rollout, and day-to-day operations.',
-      architecture: 'Kotlin / Spring Boot backend API, Angular frontend, PostgreSQL',
+      architecture: 'Angular SPA → Spring Boot API → PostgreSQL → Ansible job engine → SSH-managed WireGuard hosts',
       features: [
         'WireGuard server and client lifecycle management (CRUD + status monitoring)',
         'Automated deployment engine that dynamically generates Ansible inventories',
-        'Rollout task tracking across multiple cloud providers',
+        'Tracks Ansible rollout jobs across managed Linux hosts, including status, output, cancellation, and retry',
         'Simplified site-to-site VPN setup workflow'
       ],
-      description: 'A centralized multi-cloud WireGuard VPN management platform with an automated deployment engine that dynamically generates Ansible inventories and tracks rollout tasks across providers.',
+      description: 'A centralized WireGuard VPN management platform that generates configuration, executes Ansible playbooks over SSH, and tracks deployments across managed Linux hosts.',
       technologies: ['Kotlin', 'Spring Boot', 'Spring Security', 'Angular', 'TypeScript', 'Tailwind CSS', 'PostgreSQL', 'WireGuard'],
-      githubUrl: 'https://github.com/NFUChen/wg-control-plane'
+      githubUrl: 'https://github.com/NFUChen/wg-control-plane',
+      architectureDiagram: {
+        component: WireGuardArchitectureComponent,
+        summary: 'Desired VPN state is stored in PostgreSQL, rendered into WireGuard configuration and a per-rollout Ansible inventory, then applied to managed Linux hosts over SSH. Every run is persisted as a job with status, output, cancellation, and retry.'
+      }
     }
   ];
 }
