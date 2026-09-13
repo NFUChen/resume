@@ -26,6 +26,8 @@
             <div class="chat-bubble" [class.chat-bubble-primary]="message.role === 'user'">
               @if (!message.content && isLoading) {
                 <span class="loading loading-dots loading-sm" aria-label="Assistant is responding"></span>
+              } @else if (message.role === 'assistant') {
+                <div class="markdown-content" [innerHTML]="message.content | markdown"></div>
               } @else {
                 {{ message.content }}
               }

@@ -1,11 +1,12 @@
 import { Component, ElementRef, OnDestroy, ViewChild, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ChatMessage, ChatService } from './chat.service';
+import { MarkdownPipe } from './markdown.pipe';
 
 @Component({
   selector: 'app-chat-bubble',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, MarkdownPipe],
   templateUrl: './chat-bubble.component.html',
   styleUrls: ['./chat-bubble.component.css']
 })

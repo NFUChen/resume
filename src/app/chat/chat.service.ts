@@ -34,7 +34,10 @@ export class ChatService {
   async *streamReply(messages: ChatMessage[], signal: AbortSignal): AsyncGenerator<string> {
     const response = await fetch(CHAT_CONFIG.endpoint, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Authorization': `Bearer ${CHAT_CONFIG.apiKey}`,
+        'Content-Type': 'application/json'
+      },
       body: JSON.stringify({
         model: CHAT_CONFIG.model,
         stream: true,
