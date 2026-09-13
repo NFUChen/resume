@@ -31,6 +31,12 @@ import { Component } from '@angular/core';
           </svg>
           LinkedIn
         </a>
+        <a class="link link-primary inline-flex items-center gap-1.5" href="https://github.com/NFUChen" target="_blank" rel="noopener noreferrer">
+          <svg class="meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3.3-.4 6.8-1.6 6.8-7A5.4 5.4 0 0 0 19.4 4a5 5 0 0 0-.1-3.5S18.2.1 15 1.8a13.4 13.4 0 0 0-7 0C4.8.1 3.7.5 3.7.5A5 5 0 0 0 3.6 4a5.4 5.4 0 0 0-1.4 3.7c0 5.4 3.5 6.6 6.8 7A4.8 4.8 0 0 0 8 18v4M8 19c-3 .9-3-1.7-4-2" />
+          </svg>
+          GitHub
+        </a>
       </div>
     </section>
 

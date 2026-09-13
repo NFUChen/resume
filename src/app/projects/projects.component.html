@@ -73,12 +73,27 @@
             }
             
             <div class="card-actions justify-end">
+              @if (project.title === 'Talos Kubernetes Cluster on AWS') {
+                <button type="button" class="btn btn-outline btn-primary btn-sm" (click)="showTalosArchitecture = !showTalosArchitecture" [attr.aria-expanded]="showTalosArchitecture">
+                  <svg class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <rect x="3" y="3" width="7" height="7" rx="1" />
+                    <rect x="14" y="3" width="7" height="7" rx="1" />
+                    <rect x="8.5" y="14" width="7" height="7" rx="1" />
+                    <path d="M6.5 10v2h11v-2M12 12v2" />
+                  </svg>
+                  {{ showTalosArchitecture ? 'Hide architecture' : 'View architecture' }}
+                </button>
+              }
               @if (project.projectLink) {
-                <a [href]="project.projectLink" target="_blank" class="btn btn-primary btn-sm">
+                <a [href]="project.projectLink" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
+                  <svg class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z" />
+                    <path d="M14 2v6h6M8 13h8M8 17h6" />
+                  </svg>
                   {{ project.buttonText || 'View details' }}
                 </a>
               } @else if (project.githubUrl) {
-                <a [href]="project.githubUrl" target="_blank" class="btn btn-primary btn-sm">
+                <a [href]="project.githubUrl" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
                   GitHub
                 </a>
@@ -93,5 +108,18 @@
         </article>
       }
     </div>
+
+    @if (showTalosArchitecture) {
+      <div class="architecture-panel card bg-base-100 shadow-xl mt-10 rise-in">
+        <div class="project-accent" aria-hidden="true"></div>
+        <div class="card-body">
+          <h3 class="card-title text-xl">Talos Kubernetes Cluster — Architecture</h3>
+          <p class="text-sm text-base-content/70 mb-4">
+            Terraform-provisioned AWS infrastructure: public ALB to Traefik NodePort for workload traffic, a dedicated NLB for the Kubernetes API, Spot-backed worker nodes, and a WireGuard gateway bridging on-prem and remote sites.
+          </p>
+          <app-talos-architecture></app-talos-architecture>
+        </div>
+      </div>
+    }
   </div>
 </section> 

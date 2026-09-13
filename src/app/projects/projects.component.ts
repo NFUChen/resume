@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { TalosArchitectureComponent } from './talos-architecture.component';
 
 interface Project {
   title: string;
@@ -22,12 +23,13 @@ interface Project {
 @Component({
   selector: 'app-projects',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, TalosArchitectureComponent],
   templateUrl: './projects.component.html',
   styleUrls: ['./projects.component.css']
 })
 export class ProjectsComponent {
   expandedProjects: Set<string> = new Set();
+  showTalosArchitecture = false;
 
   toggleProjectExpansion(projectTitle: string): void {
     if (this.expandedProjects.has(projectTitle)) {
@@ -57,7 +59,7 @@ export class ProjectsComponent {
       ],
       description: 'A long-running experiment in framework-level design, validating whether better abstractions measurably improve team development experience.',
       projectLink: 'https://pythonspring.github.io/pyspring-docs',
-      buttonText: 'View project'
+      buttonText: 'View docs'
     },
     {
       title: 'Talos Kubernetes Cluster on AWS',
@@ -87,7 +89,8 @@ export class ProjectsComponent {
         'Simplified site-to-site VPN setup workflow'
       ],
       description: 'A centralized multi-cloud WireGuard VPN management platform with an automated deployment engine that dynamically generates Ansible inventories and tracks rollout tasks across providers.',
-      technologies: ['Kotlin', 'Spring Boot', 'Spring Security', 'Angular', 'TypeScript', 'Tailwind CSS', 'PostgreSQL', 'WireGuard']
+      technologies: ['Kotlin', 'Spring Boot', 'Spring Security', 'Angular', 'TypeScript', 'Tailwind CSS', 'PostgreSQL', 'WireGuard'],
+      githubUrl: 'https://github.com/NFUChen/wg-control-plane'
     }
   ];
 }
