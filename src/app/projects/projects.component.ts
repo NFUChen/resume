@@ -1,5 +1,6 @@
 import { Component, Type } from '@angular/core';
 import { CommonModule, NgComponentOutlet } from '@angular/common';
+import { PySpringArchitectureComponent } from './pyspring-architecture.component';
 import { TalosArchitectureComponent } from './talos-architecture.component';
 import { WireGuardArchitectureComponent } from './wireguard-architecture.component';
 
@@ -36,7 +37,8 @@ interface Project {
 })
 export class ProjectsComponent {
   expandedProjects: Set<string> = new Set();
-  expandedArchitectureId: string | null = null;
+  activeProjectIndex = 0;
+  activeArchitectureId: string | null = null;
 
   toggleProjectExpansion(projectId: string): void {
     if (this.expandedProjects.has(projectId)) {
@@ -50,14 +52,45 @@ export class ProjectsComponent {
     return this.expandedProjects.has(projectId);
   }
 
+  get activeProject(): Project {
+    return this.projects[this.activeProjectIndex];
+  }
+
   toggleArchitecture(projectId: string): void {
-    this.expandedArchitectureId = this.expandedArchitectureId === projectId
-      ? null
-      : projectId;
+    const isClosing = this.activeArchitectureId === projectId;
+    this.activeArchitectureId = isClosing ? null : projectId;
+
+    if (!isClosing) {
+      this.scrollToArchitecture();
+    }
+  }
+
+  showPreviousProject(): void {
+    this.changeProject(-1);
+  }
+
+  showNextProject(): void {
+    this.changeProject(1);
   }
 
   isArchitectureExpanded(projectId: string): boolean {
-    return this.expandedArchitectureId === projectId;
+    return this.activeArchitectureId === projectId;
+  }
+
+  private changeProject(offset: number): void {
+    this.activeProjectIndex = (this.activeProjectIndex + offset + this.projects.length) % this.projects.length;
+    this.activeArchitectureId = null;
+  }
+
+  private scrollToArchitecture(): void {
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        document.getElementById('architecture-carousel')?.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      });
+    });
   }
 
   projects: Project[] = [
@@ -67,17 +100,23 @@ export class ProjectsComponent {
       period: '2023/10 - Present',
       tooltip: 'Open-source project',
       overview: 'A Python web framework inspired by Spring Boot, focused on developer experience and framework-level design.',
-      technologies: ['Python', 'FastAPI', 'Pydantic', 'ASGI', 'OpenAPI', 'Dependency Injection', 'Event-driven'],
+      architecture: 'Class scanning → IoC container → FastAPI routers and middleware → queued in-process events',
+      technologies: ['Python', 'FastAPI', 'Pydantic', 'Uvicorn', 'OpenAPI', 'Dependency Injection', 'Pub/Sub'],
       features: [
-        'Dependency injection (DI) container to reduce coupling between modules',
-        'REST API development with automatically generated OpenAPI documentation',
-        'Built-in event system and asynchronous processing',
-        'Type-safe multi-source injection for a better developer experience',
-        'Extensible framework core built on FastAPI, Pydantic, and ASGI'
+        'Annotation-driven IoC container with singleton and prototype scopes, qualifiers, and abstract-type resolution',
+        'Declarative REST controllers and request mappings backed by FastAPI-generated OpenAPI documentation',
+        'In-process publish/subscribe events with queued background-thread dispatch',
+        'Type-annotated field injection across components, factory beans, and Pydantic-validated properties',
+        'Extensible core with lifecycle hooks, ordered middleware, and entry-point-discovered starter modules'
       ],
       description: 'A long-running experiment in framework-level design, validating whether better abstractions measurably improve team development experience.',
       projectLink: 'https://pythonspring.github.io/pyspring-docs',
-      buttonText: 'View docs'
+      buttonText: 'View docs',
+      githubUrl: 'https://github.com/PythonSpring/pyspring-core',
+      architectureDiagram: {
+        component: PySpringArchitectureComponent,
+        summary: 'Application classes are scanned and registered into an IoC container that resolves components, factory beans, and Pydantic-validated properties by type annotation. Controllers are bound onto FastAPI routers, while published events are dispatched from a queue on a background worker thread.'
+      }
     },
     {
       id: 'talos-aws',

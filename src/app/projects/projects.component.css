@@ -46,6 +46,47 @@
   color: transparent;
 }
 
+.project-carousel {
+  display: grid;
+  grid-template-columns: auto minmax(0, 54rem) auto;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+}
+
+.carousel-control {
+  box-shadow: 0 8px 24px color-mix(in oklab, var(--color-primary) 25%, transparent);
+}
+
+.project-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  margin-top: 1.25rem;
+  color: color-mix(in oklab, var(--color-base-content) 58%, transparent);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.project-dots {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.project-dot {
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 999px;
+  background: color-mix(in oklab, var(--color-base-content) 24%, transparent);
+  transition: width 200ms ease, background-color 200ms ease;
+}
+
+.project-dot.active {
+  width: 1.25rem;
+  background: var(--color-primary);
+}
+
 .project-card {
   position: relative;
   overflow: hidden;
@@ -120,12 +161,50 @@
   box-shadow: 0 0 0 3px color-mix(in oklab, var(--color-primary) 16%, transparent);
 }
 
+/* Keep card actions on a single line; scroll horizontally on narrow cards. */
+.actions-row {
+  flex-wrap: nowrap;
+  align-items: center;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.actions-row::-webkit-scrollbar {
+  display: none;
+}
+
 .architecture-panel {
   position: relative;
+  scroll-margin-top: 5.5rem;
   overflow: hidden;
   border: 1px solid color-mix(in oklab, var(--color-base-content) 10%, transparent);
   background: color-mix(in oklab, var(--color-base-100) 92%, transparent);
   backdrop-filter: blur(16px);
+}
+
+.architecture-header {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.architecture-heading {
+  min-width: 0;
+  text-align: center;
+}
+
+.architecture-heading .card-title {
+  justify-content: center;
+}
+
+.architecture-counter {
+  margin-bottom: 0.2rem;
+  color: var(--color-primary);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
 }
 
 .tech-badge {
@@ -137,5 +216,21 @@
 @media (max-width: 768px) {
   .projects-page {
     padding-top: 2.5rem;
+  }
+
+  .project-carousel {
+    grid-template-columns: 1fr 1fr;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+
+  .project-carousel .project-card {
+    grid-column: 1 / -1;
+    grid-row: 1;
+  }
+
+  .carousel-control {
+    grid-row: 2;
+    justify-self: center;
   }
 }
