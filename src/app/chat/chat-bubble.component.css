@@ -87,9 +87,16 @@
 
 .message-list .chat-bubble {
   max-width: 88%;
-  white-space: pre-wrap;
   font-size: 0.83rem;
   line-height: 1.55;
+}
+
+.message-list .chat-end .chat-bubble {
+  white-space: pre-wrap;
+}
+
+.message-list .chat-start .chat-bubble {
+  white-space: normal;
 }
 
 :host ::ng-deep .markdown-content p {
@@ -115,7 +122,17 @@
 }
 
 :host ::ng-deep .markdown-content li {
-  margin: 0.3rem 0;
+  margin: 0.2rem 0;
+}
+
+:host ::ng-deep .markdown-content li > p {
+  display: inline;
+  margin: 0;
+}
+
+:host ::ng-deep .markdown-content li > ul,
+:host ::ng-deep .markdown-content li > ol {
+  margin: 0.2rem 0;
 }
 
 :host ::ng-deep .markdown-content strong {

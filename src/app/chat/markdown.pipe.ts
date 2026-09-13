@@ -9,7 +9,7 @@ export class MarkdownPipe implements PipeTransform {
   transform(value: string): string {
     return marked.parse(value, {
       async: false,
-      breaks: true,
+      breaks: false,
       gfm: true
     }) as string;
   }
