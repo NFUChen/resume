@@ -1,5 +1,79 @@
 /* Navigation styles */
+.site-nav {
+  border-bottom: 1px solid color-mix(in oklab, var(--color-base-content) 10%, transparent);
+  background: color-mix(in oklab, var(--color-base-100) 78%, transparent);
+  backdrop-filter: blur(18px) saturate(160%);
+}
+
+.brand {
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  transition: color 200ms ease;
+}
+
+.brand-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  margin-right: 0.55rem;
+  border-radius: 0.6rem;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+  color: var(--color-primary-content);
+  font-size: 0.85rem;
+  font-weight: 900;
+}
+
+.nav-link {
+  position: relative;
+  border-radius: 0.6rem;
+  font-weight: 600;
+  transition: color 200ms ease, background-color 200ms ease;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  right: 50%;
+  bottom: 0.15rem;
+  height: 2px;
+  border-radius: 999px;
+  background: var(--color-primary);
+  opacity: 0;
+  transition: left 240ms cubic-bezier(0.22, 1, 0.36, 1), right 240ms cubic-bezier(0.22, 1, 0.36, 1), opacity 200ms ease;
+}
+
+.nav-link:hover::after {
+  left: 0.75rem;
+  right: 0.75rem;
+  opacity: 0.55;
+}
+
+.nav-icon {
+  transition: transform 240ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.nav-link:hover .nav-icon {
+  transform: translateY(-2px) scale(1.12);
+}
+
 .active {
-  background-color: rgb(var(--primary));
-  color: rgb(var(--primary-content));
-} 
+  background-color: color-mix(in oklab, var(--color-primary) 14%, transparent);
+  color: var(--color-primary);
+}
+
+.active::after {
+  left: 0.75rem;
+  right: 0.75rem;
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-link,
+  .nav-link::after,
+  .nav-icon {
+    transition: none;
+  }
+}

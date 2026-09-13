@@ -1,12 +1,15 @@
 <section class="experience-page">
   <div class="experience-shell">
     <header class="experience-header">
-      <h2>學歷與職涯歷程</h2>
+      <div>
+        <span class="experience-kicker">CAREER JOURNEY</span>
+        <h2>Professional Experience &amp; Education</h2>
+      </div>
     </header>
 
     <div class="career-timeline">
-      @for (item of timeline; track item.period) {
-        <article class="career-timeline-item">
+      @for (item of timeline; track item.period; let index = $index) {
+        <article class="career-timeline-item rise-in" [style.animation-delay.ms]="index * 110">
           <div class="career-timeline-marker" aria-hidden="true"></div>
           <div class="career-timeline-content">
             <div class="period-badge">{{ item.period }}</div>

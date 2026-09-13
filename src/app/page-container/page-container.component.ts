@@ -22,7 +22,9 @@ const VALID_PAGES = Object.keys(PAGE_COMPONENTS);
   imports: [CommonModule, NgComponentOutlet],
   template: `
     @if (currentComponent) {
-      <ng-container *ngComponentOutlet="currentComponent"></ng-container>
+      <div class="page-enter" [attr.data-page]="currentPage">
+        <ng-container *ngComponentOutlet="currentComponent"></ng-container>
+      </div>
     }
   `
 })
@@ -31,6 +33,7 @@ export class PageContainerComponent implements OnInit {
   private router = inject(Router);
 
   currentComponent: Type<unknown> = AboutComponent;
+  currentPage = 'about';
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
@@ -43,8 +46,10 @@ export class PageContainerComponent implements OnInit {
             replaceUrl: true
           });
         }
+        this.currentPage = 'about';
         this.currentComponent = AboutComponent;
       } else {
+        this.currentPage = page;
         this.currentComponent = PAGE_COMPONENTS[page];
       }
     });
