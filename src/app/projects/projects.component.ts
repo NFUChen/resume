@@ -36,7 +36,7 @@ interface Project {
 })
 export class ProjectsComponent {
   expandedProjects: Set<string> = new Set();
-  expandedArchitectures: Set<string> = new Set();
+  expandedArchitectureId: string | null = null;
 
   toggleProjectExpansion(projectId: string): void {
     if (this.expandedProjects.has(projectId)) {
@@ -51,15 +51,13 @@ export class ProjectsComponent {
   }
 
   toggleArchitecture(projectId: string): void {
-    if (this.expandedArchitectures.has(projectId)) {
-      this.expandedArchitectures.delete(projectId);
-    } else {
-      this.expandedArchitectures.add(projectId);
-    }
+    this.expandedArchitectureId = this.expandedArchitectureId === projectId
+      ? null
+      : projectId;
   }
 
   isArchitectureExpanded(projectId: string): boolean {
-    return this.expandedArchitectures.has(projectId);
+    return this.expandedArchitectureId === projectId;
   }
 
   projects: Project[] = [
