@@ -1,0 +1,84 @@
+<div class="chat-widget" [class.open]="isOpen">
+  @if (isPanelRendered) {
+    <section class="chat-panel" [class.closing]="isClosing" aria-label="Chat with William's portfolio assistant">
+      <header class="chat-header">
+        <div class="assistant-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 8V4H8" />
+            <rect x="4" y="8" width="16" height="12" rx="2" />
+            <path d="M9 13h.01M15 13h.01M9 17h6" />
+          </svg>
+        </div>
+        <div>
+          <h2>Ask about William</h2>
+          <p>Resume and project assistant</p>
+        </div>
+        <button type="button" class="btn btn-circle btn-ghost btn-sm" (click)="toggle()" aria-label="Close chat">
+          <svg viewBox="0 0 24 24" class="size-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <path d="M18 6 6 18M6 6l12 12" />
+          </svg>
+        </button>
+      </header>
+
+      <div #messageList class="message-list" aria-live="polite">
+        @for (message of messages; track $index) {
+          <div class="chat" [class.chat-end]="message.role === 'user'" [class.chat-start]="message.role === 'assistant'">
+            <div class="chat-bubble" [class.chat-bubble-primary]="message.role === 'user'">
+              @if (!message.content && isLoading) {
+                <span class="loading loading-dots loading-sm" aria-label="Assistant is responding"></span>
+              } @else if (message.role === 'assistant') {
+                <div class="markdown-content" [innerHTML]="message.content | markdown"></div>
+              } @else {
+                {{ message.content }}
+              }
+            </div>
+          </div>
+        }
+
+        @if (errorMessage) {
+          <div class="alert alert-error alert-soft text-xs" role="alert">
+            <span>{{ errorMessage }}</span>
+          </div>
+        }
+      </div>
+
+      <form class="chat-input" (submit)="$event.preventDefault(); sendMessage()">
+        <textarea
+          #messageInput
+          class="textarea textarea-bordered"
+          [(ngModel)]="input"
+          name="message"
+          rows="1"
+          maxlength="1000"
+          placeholder="Ask about experience or projects..."
+          [disabled]="isLoading"
+          (keydown)="handleKeydown($event)"
+          aria-label="Chat message"
+        ></textarea>
+        <button type="submit" class="btn btn-primary btn-square" [disabled]="!input.trim() || isLoading" aria-label="Send message">
+          @if (isLoading) {
+            <span class="loading loading-spinner loading-sm"></span>
+          } @else {
+            <svg viewBox="0 0 24 24" class="size-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="m22 2-7 20-4-9-9-4Z" />
+              <path d="M22 2 11 13" />
+            </svg>
+          }
+        </button>
+      </form>
+    </section>
+  }
+
+  <button
+    type="button"
+    class="chat-launcher btn btn-primary btn-circle"
+    (click)="toggle()"
+    [attr.aria-expanded]="isOpen"
+    aria-label="Open portfolio chat"
+  >
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4Z" />
+      <path d="M8 9h8M8 13h5" />
+    </svg>
+  </button>
+</div>
