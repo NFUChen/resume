@@ -46,47 +46,6 @@
   color: transparent;
 }
 
-.project-carousel {
-  display: grid;
-  grid-template-columns: auto minmax(0, 54rem) auto;
-  align-items: center;
-  justify-content: center;
-  gap: 1.25rem;
-}
-
-.carousel-control {
-  box-shadow: 0 8px 24px color-mix(in oklab, var(--color-primary) 25%, transparent);
-}
-
-.project-pagination {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.8rem;
-  margin-top: 1.25rem;
-  color: color-mix(in oklab, var(--color-base-content) 58%, transparent);
-  font-size: 0.75rem;
-  font-weight: 700;
-}
-
-.project-dots {
-  display: flex;
-  gap: 0.4rem;
-}
-
-.project-dot {
-  width: 0.45rem;
-  height: 0.45rem;
-  border-radius: 999px;
-  background: color-mix(in oklab, var(--color-base-content) 24%, transparent);
-  transition: width 200ms ease, background-color 200ms ease;
-}
-
-.project-dot.active {
-  width: 1.25rem;
-  background: var(--color-primary);
-}
-
 .project-card {
   position: relative;
   overflow: hidden;
