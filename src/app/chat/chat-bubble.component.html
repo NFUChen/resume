@@ -52,6 +52,8 @@
           maxlength="1000"
           placeholder="Ask about experience or projects..."
           [disabled]="isLoading"
+          (compositionstart)="handleCompositionStart()"
+          (compositionend)="handleCompositionEnd()"
           (keydown)="handleKeydown($event)"
           aria-label="Chat message"
         ></textarea>
