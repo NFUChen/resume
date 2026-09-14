@@ -2,6 +2,7 @@ import { Component, ElementRef, OnDestroy, ViewChild, inject } from '@angular/co
 import { FormsModule } from '@angular/forms';
 import { ChatMessage, ChatService } from './chat.service';
 import { MarkdownPipe } from './markdown.pipe';
+import { TraditionalChineseService } from './traditional-chinese.service';
 
 @Component({
   selector: 'app-chat-bubble',
@@ -12,6 +13,7 @@ import { MarkdownPipe } from './markdown.pipe';
 })
 export class ChatBubbleComponent implements OnDestroy {
   private readonly chatService = inject(ChatService);
+  private readonly traditionalChinese = inject(TraditionalChineseService);
   private abortController?: AbortController;
   private closeTimer?: ReturnType<typeof setTimeout>;
   private isComposing = false;
@@ -93,6 +95,11 @@ export class ChatBubbleComponent implements OnDestroy {
     this.input = '';
     this.messages.push({ role: 'user', content });
     const assistantMessage: ChatMessage = { role: 'assistant', content: '' };
+    const convertToTraditional = this.traditionalChinese.shouldConvertReply(content);
+    const conversionReady = convertToTraditional
+      ? this.traditionalChinese.prepare()
+      : Promise.resolve();
+    let rawAssistantContent = '';
     this.messages.push(assistantMessage);
     this.isLoading = true;
     this.abortController = new AbortController();
@@ -101,7 +108,11 @@ export class ChatBubbleComponent implements OnDestroy {
     try {
       const history = this.messages.slice(0, -1);
       for await (const chunk of this.chatService.streamReply(history, this.abortController.signal)) {
-        assistantMessage.content += chunk;
+        await conversionReady;
+        rawAssistantContent += chunk;
+        assistantMessage.content = convertToTraditional
+          ? this.traditionalChinese.convert(rawAssistantContent)
+          : rawAssistantContent;
         this.scrollToBottom();
       }
 
