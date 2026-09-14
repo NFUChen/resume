@@ -20,6 +20,33 @@ describe('ChatBubbleComponent', () => {
     component.input = '測試問題';
   });
 
+  it('toggles zen mode', () => {
+    component.toggleZen();
+
+    expect(component.isZen).toBeTrue();
+
+    component.toggleZen();
+
+    expect(component.isZen).toBeFalse();
+  });
+
+  it('exits zen mode when Escape is pressed', () => {
+    component.isZen = true;
+
+    component.handleEscape();
+
+    expect(component.isZen).toBeFalse();
+  });
+
+  it('resets zen mode when chat closes', () => {
+    component.toggle();
+    component.isZen = true;
+
+    component.toggle();
+
+    expect(component.isZen).toBeFalse();
+  });
+
   it('submits when Enter is pressed outside IME composition', () => {
     const event = new KeyboardEvent('keydown', {
       key: 'Enter',

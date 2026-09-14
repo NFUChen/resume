@@ -9,11 +9,25 @@
   gap: 0.8rem;
 }
 
+.chat-scrim {
+  position: fixed;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+  background: color-mix(in oklab, var(--color-base-content) 35%, transparent);
+  backdrop-filter: blur(6px);
+  transition: opacity 320ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
 .chat-launcher {
+  position: relative;
+  z-index: 1;
   width: 3.5rem;
   height: 3.5rem;
   box-shadow: 0 14px 34px color-mix(in oklab, var(--color-primary) 38%, transparent);
-  transition: transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition:
+    transform 220ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 220ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .chat-launcher:hover {
@@ -26,6 +40,10 @@
 }
 
 .chat-panel {
+  position: fixed;
+  right: 1.25rem;
+  bottom: 5.55rem;
+  z-index: 1;
   width: min(24rem, calc(100vw - 2rem));
   height: min(36rem, calc(100vh - 7rem));
   display: grid;
@@ -37,11 +55,38 @@
   box-shadow: 0 24px 70px color-mix(in oklab, var(--color-base-content) 25%, transparent);
   backdrop-filter: blur(20px) saturate(150%);
   animation: chat-enter 240ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  transition:
+    width 320ms cubic-bezier(0.22, 1, 0.36, 1),
+    height 320ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-radius 320ms cubic-bezier(0.22, 1, 0.36, 1),
+    inset 320ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .chat-panel.closing {
   pointer-events: none;
   animation: chat-exit 220ms cubic-bezier(0.4, 0, 1, 1) both;
+}
+
+.chat-widget.zen .chat-scrim {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.chat-widget.zen .chat-panel {
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  border-radius: 0;
+}
+
+.chat-widget.zen .chat-launcher {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.8);
 }
 
 .chat-header {
@@ -62,6 +107,12 @@
 .chat-header p {
   color: color-mix(in oklab, var(--color-base-content) 58%, transparent);
   font-size: 0.72rem;
+}
+
+.chat-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.15rem;
 }
 
 .assistant-mark {
@@ -211,16 +262,25 @@
   }
 
   .chat-panel {
+    right: 0.75rem;
+    bottom: 5.05rem;
     width: calc(100vw - 1.5rem);
     height: min(34rem, calc(100vh - 6rem));
+  }
+
+  .chat-widget.zen .chat-panel {
+    width: 100vw;
+    height: 100vh;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .chat-panel {
     animation: none;
+    transition: none;
   }
 
+  .chat-scrim,
   .chat-launcher {
     transition: none;
   }
