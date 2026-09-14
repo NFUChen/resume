@@ -1,6 +1,14 @@
-<div class="chat-widget" [class.open]="isOpen">
+<div class="chat-widget" [class.open]="isOpen" [class.zen]="isZen">
+  <div class="chat-scrim" aria-hidden="true" (click)="toggleZen()"></div>
+
   @if (isPanelRendered) {
-    <section class="chat-panel" [class.closing]="isClosing" aria-label="Chat with William's portfolio assistant">
+    <section
+      class="chat-panel"
+      [class.closing]="isClosing"
+      role="dialog"
+      [attr.aria-modal]="isZen"
+      aria-label="Chat with William's portfolio assistant"
+    >
       <header class="chat-header">
         <div class="assistant-mark" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -13,11 +21,30 @@
           <h2>Ask about William</h2>
           <p>Resume and project assistant</p>
         </div>
-        <button type="button" class="btn btn-circle btn-ghost btn-sm" (click)="toggle()" aria-label="Close chat">
-          <svg viewBox="0 0 24 24" class="size-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-            <path d="M18 6 6 18M6 6l12 12" />
-          </svg>
-        </button>
+        <div class="chat-actions">
+          <button
+            type="button"
+            class="btn btn-circle btn-ghost btn-sm zen-toggle"
+            (click)="toggleZen()"
+            [attr.aria-pressed]="isZen"
+            [attr.aria-label]="isZen ? 'Exit zen mode' : 'Enter zen mode'"
+          >
+            @if (isZen) {
+              <svg viewBox="0 0 24 24" class="size-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M8 3v3a2 2 0 0 1-2 2H3M16 3v3a2 2 0 0 0 2 2h3M8 21v-3a2 2 0 0 0-2-2H3M16 21v-3a2 2 0 0 1 2-2h3" />
+              </svg>
+            } @else {
+              <svg viewBox="0 0 24 24" class="size-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M8 3H5a2 2 0 0 0-2 2v3M16 3h3a2 2 0 0 1 2 2v3M8 21H5a2 2 0 0 1-2-2v-3M16 21h3a2 2 0 0 0 2-2v-3" />
+              </svg>
+            }
+          </button>
+          <button type="button" class="btn btn-circle btn-ghost btn-sm" (click)="toggle()" aria-label="Close chat">
+            <svg viewBox="0 0 24 24" class="size-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <path d="M18 6 6 18M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
       </header>
 
       <div #messageList class="message-list" aria-live="polite">

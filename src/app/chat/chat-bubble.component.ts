@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnDestroy, ViewChild, inject } from '@angular/core';
+import { Component, ElementRef, HostListener, OnDestroy, ViewChild, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ChatMessage, ChatService } from './chat.service';
 import { MarkdownPipe } from './markdown.pipe';
@@ -24,6 +24,7 @@ export class ChatBubbleComponent implements OnDestroy {
   isOpen = false;
   isPanelRendered = false;
   isClosing = false;
+  isZen = false;
   isLoading = false;
   input = '';
   errorMessage = '';
@@ -51,8 +52,21 @@ export class ChatBubbleComponent implements OnDestroy {
     setTimeout(() => this.messageInput?.nativeElement.focus());
   }
 
+  toggleZen(): void {
+    this.isZen = !this.isZen;
+    setTimeout(() => this.messageInput?.nativeElement.focus());
+  }
+
+  @HostListener('document:keydown.escape')
+  handleEscape(): void {
+    if (this.isZen) {
+      this.isZen = false;
+    }
+  }
+
   private close(): void {
     this.isOpen = false;
+    this.isZen = false;
     this.isClosing = true;
     this.closeTimer = setTimeout(() => {
       this.isPanelRendered = false;
