@@ -21,6 +21,32 @@
   mask-image: linear-gradient(to bottom, black, transparent 72%);
 }
 
+.projects-page::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: var(--spotlight-opacity, 0);
+  background-image:
+    linear-gradient(color-mix(in oklab, var(--color-primary) 55%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in oklab, var(--color-primary) 55%, transparent) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(circle 150px at var(--cursor-x, 50%) var(--cursor-y, 50%), black, transparent);
+  transition: opacity 240ms ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .projects-page::after {
+    display: none;
+  }
+}
+
+@media (hover: none), (pointer: coarse) {
+  .projects-page::after {
+    display: none;
+  }
+}
+
 .projects-page > div {
   position: relative;
   z-index: 1;

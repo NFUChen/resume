@@ -1,5 +1,7 @@
 .experience-page {
   min-height: calc(100vh - 4rem);
+  position: relative;
+  overflow: hidden;
   padding: 2rem 1rem 4rem;
   background:
     linear-gradient(oklch(from var(--color-base-content) l c h / 0.07) 1px, transparent 1px),
@@ -10,10 +12,38 @@
   background-size: 36px 36px, 36px 36px, 100% 100%, 100% 100%;
 }
 
+.experience-page::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: var(--spotlight-opacity, 0);
+  background-image:
+    linear-gradient(oklch(from var(--color-primary) l c h / 0.55) 1px, transparent 1px),
+    linear-gradient(90deg, oklch(from var(--color-primary) l c h / 0.55) 1px, transparent 1px);
+  background-size: 36px 36px;
+  mask-image: radial-gradient(circle 150px at var(--cursor-x, 50%) var(--cursor-y, 50%), black, transparent);
+  transition: opacity 240ms ease;
+}
+
 .experience-shell {
+  position: relative;
+  z-index: 1;
   max-width: 1080px;
   margin: 0 auto;
   color: var(--color-base-content);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .experience-page::after {
+    display: none;
+  }
+}
+
+@media (hover: none), (pointer: coarse) {
+  .experience-page::after {
+    display: none;
+  }
 }
 
 .experience-header {

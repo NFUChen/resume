@@ -1,5 +1,6 @@
 import { CommonModule, NgComponentOutlet } from '@angular/common';
 import { Component, Type } from '@angular/core';
+import { CursorSpotlightDirective } from '../components/cursor-spotlight.directive';
 import { PROJECTS, ResumeProject } from '../data/resume.data';
 import { PySpringArchitectureComponent } from './pyspring-architecture.component';
 import { TalosArchitectureComponent } from './talos-architecture.component';
@@ -21,7 +22,7 @@ const ARCHITECTURE_COMPONENTS: Record<string, Type<unknown>> = {
 @Component({
   selector: 'app-projects',
   standalone: true,
-  imports: [CommonModule, NgComponentOutlet],
+  imports: [CommonModule, NgComponentOutlet, CursorSpotlightDirective],
   templateUrl: './projects.component.html',
   styleUrls: ['./projects.component.css']
 })

@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
+import { CursorSpotlightDirective } from './cursor-spotlight.directive';
 
 @Component({
   selector: 'app-about',
   standalone: true,
+  imports: [CursorSpotlightDirective],
   template: `
-    <section class="about-hero px-4 pt-20 pb-14 text-center">
+    <section class="about-hero px-4 pt-20 pb-14 text-center" appCursorSpotlight>
       <span class="rise-in inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-primary/30 bg-primary/10 text-primary text-xs font-extrabold tracking-widest">
         AVAILABLE FOR INFRASTRUCTURE &amp; SRE ROLES
       </span>
@@ -89,6 +91,20 @@ import { Component } from '@angular/core';
       mask-image: radial-gradient(circle at 50% 20%, black, transparent 70%);
     }
 
+    .about-hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: var(--spotlight-opacity, 0);
+      background-image:
+        linear-gradient(color-mix(in oklab, var(--color-primary) 55%, transparent) 1px, transparent 1px),
+        linear-gradient(90deg, color-mix(in oklab, var(--color-primary) 55%, transparent) 1px, transparent 1px);
+      background-size: 42px 42px;
+      mask-image: radial-gradient(circle 150px at var(--cursor-x, 50%) var(--cursor-y, 50%), black, transparent);
+      transition: opacity 240ms ease;
+    }
+
     .about-hero > * {
       position: relative;
       z-index: 1;
@@ -102,9 +118,45 @@ import { Component } from '@angular/core';
     }
 
     .about-name {
-      background: linear-gradient(110deg, var(--color-base-content), var(--color-primary));
+      background-image: linear-gradient(
+        110deg,
+        var(--color-base-content) 15%,
+        var(--color-primary) 42%,
+        color-mix(in oklab, var(--color-secondary) 65%, var(--color-primary)) 52%,
+        var(--color-primary) 62%,
+        var(--color-base-content) 85%
+      );
+      background-size: 220% 100%;
+      background-position: 100% 50%;
       background-clip: text;
+      -webkit-background-clip: text;
       color: transparent;
+      -webkit-text-fill-color: transparent;
+      animation:
+        rise-in 520ms cubic-bezier(0.22, 1, 0.36, 1) both,
+        title-gradient-flow 8s ease-in-out 600ms infinite alternate;
+    }
+
+    @keyframes title-gradient-flow {
+      from { background-position: 100% 50%; }
+      to { background-position: 0% 50%; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .about-name {
+        animation: none;
+        background-position: 50% 50%;
+      }
+
+      .about-hero::after {
+        display: none;
+      }
+    }
+
+    @media (hover: none), (pointer: coarse) {
+      .about-hero::after {
+        display: none;
+      }
     }
 
     .section-heading {

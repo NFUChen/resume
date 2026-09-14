@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { CursorSpotlightDirective } from './cursor-spotlight.directive';
 
 interface SkillGroup {
   iconPath: string;
@@ -11,9 +12,9 @@ interface SkillGroup {
 @Component({
   selector: 'app-skills',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, CursorSpotlightDirective],
   template: `
-    <section class="skills-page px-4 py-16">
+    <section class="skills-page px-4 py-16" appCursorSpotlight>
       <div class="container mx-auto max-w-6xl">
         <header class="text-center mb-12">
           <span class="skills-kicker">TECHNICAL TOOLBOX</span>
@@ -69,6 +70,32 @@ interface SkillGroup {
         linear-gradient(90deg, color-mix(in oklab, var(--color-base-content) 8%, transparent) 1px, transparent 1px);
       background-size: 46px 46px;
       mask-image: linear-gradient(to bottom, black, transparent 75%);
+    }
+
+    .skills-page::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: var(--spotlight-opacity, 0);
+      background-image:
+        linear-gradient(color-mix(in oklab, var(--color-primary) 55%, transparent) 1px, transparent 1px),
+        linear-gradient(90deg, color-mix(in oklab, var(--color-primary) 55%, transparent) 1px, transparent 1px);
+      background-size: 46px 46px;
+      mask-image: radial-gradient(circle 150px at var(--cursor-x, 50%) var(--cursor-y, 50%), black, transparent);
+      transition: opacity 240ms ease;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .skills-page::after {
+        display: none;
+      }
+    }
+
+    @media (hover: none), (pointer: coarse) {
+      .skills-page::after {
+        display: none;
+      }
     }
 
     .skills-page > div {
