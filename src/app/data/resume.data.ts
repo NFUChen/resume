@@ -93,6 +93,15 @@ export const EXPERIENCE: ExperienceItem[] = [
 
 export const PROJECTS: ResumeProject[] = [
   {
+    id: 'pgschema', title: 'pgschema — Open Source Contributor', period: '2026/5', tooltip: 'Open-source contribution',
+    overview: 'Contributed to a Terraform-style declarative schema migration CLI for PostgreSQL that generates and safely applies migration plans from a desired SQL schema state.',
+    architecture: 'Desired SQL schema → PostgreSQL-aware diff engine → reviewed migration plan → safe apply',
+    technologies: ['Go', 'PostgreSQL', 'Cobra CLI', 'GitHub Actions', 'CI/CD'],
+    features: ['Added apply-command file-extension validation with comprehensive test coverage, preventing unsupported plan inputs from reaching migration execution (merged PR #434)', 'Refactored release CI into a GitHub Actions matrix that tests PostgreSQL 14–18 concurrently, reducing duplication and improving failure visibility (merged PR #432)', 'Explored and proposed support for TOML configuration, multi-schema migrations, column rename detection, and PostgreSQL extensions through upstream PRs'],
+    description: 'Open-source contributions to pgschema, a PostgreSQL-focused CLI that replaces hand-written, sequential migration files with a declarative dump, plan, and apply workflow.',
+    githubUrl: 'https://github.com/pgplex/pgschema'
+  },
+  {
     id: 'pyspring', title: 'PySpring Framework', period: '2023/10 - Present', tooltip: 'Open-source project',
     overview: 'A Python web framework inspired by Spring Boot, focused on developer experience and framework-level design.',
     architecture: 'Class scanning → IoC container → FastAPI routers and middleware → queued in-process events',
