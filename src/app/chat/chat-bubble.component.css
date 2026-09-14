@@ -40,7 +40,9 @@
 }
 
 .chat-panel {
-  position: relative;
+  position: fixed;
+  right: 1.25rem;
+  bottom: 5.55rem;
   z-index: 1;
   width: min(24rem, calc(100vw - 2rem));
   height: min(36rem, calc(100vh - 7rem));
@@ -71,8 +73,11 @@
 }
 
 .chat-widget.zen .chat-panel {
-  width: min(64rem, calc(100vw - 3rem));
-  height: min(56rem, calc(100vh - 3rem));
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  border-radius: 0;
 }
 
 .chat-widget.zen .chat-launcher {
@@ -257,13 +262,15 @@
   }
 
   .chat-panel {
+    right: 0.75rem;
+    bottom: 5.05rem;
     width: calc(100vw - 1.5rem);
     height: min(34rem, calc(100vh - 6rem));
   }
 
   .chat-widget.zen .chat-panel {
-    width: calc(100vw - 1.5rem);
-    height: calc(100vh - 1.5rem);
+    width: 100vw;
+    height: 100vh;
   }
 }
 
