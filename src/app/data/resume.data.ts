@@ -93,15 +93,6 @@ export const EXPERIENCE: ExperienceItem[] = [
 
 export const PROJECTS: ResumeProject[] = [
   {
-    id: 'pgschema', title: 'pgschema — Open Source Contributor', period: '2026/5', tooltip: 'Open-source contribution',
-    overview: 'Contributed to a Terraform-style declarative schema migration CLI for PostgreSQL that generates and safely applies migration plans from a desired SQL schema state.',
-    architecture: 'Desired SQL schema → PostgreSQL-aware diff engine → reviewed migration plan → safe apply',
-    technologies: ['Go', 'PostgreSQL', 'Cobra CLI', 'GitHub Actions', 'CI/CD'],
-    features: ['Added apply-command file-extension validation with comprehensive test coverage, preventing unsupported plan inputs from reaching migration execution (merged PR #434)', 'Refactored release CI into a GitHub Actions matrix that tests PostgreSQL 14–18 concurrently, reducing duplication and improving failure visibility (merged PR #432)', 'Explored and proposed support for TOML configuration, multi-schema migrations, column rename detection, and PostgreSQL extensions through upstream PRs'],
-    description: 'Open-source contributions to pgschema, a PostgreSQL-focused CLI that replaces hand-written, sequential migration files with a declarative dump, plan, and apply workflow.',
-    githubUrl: 'https://github.com/pgplex/pgschema'
-  },
-  {
     id: 'pyspring', title: 'PySpring Framework', period: '2023/10 - Present', tooltip: 'Open-source project',
     overview: 'A Python web framework inspired by Spring Boot, focused on developer experience and framework-level design.',
     architecture: 'Class scanning → IoC container → FastAPI routers and middleware → queued in-process events',
@@ -128,5 +119,23 @@ export const PROJECTS: ResumeProject[] = [
     technologies: ['Kotlin', 'Spring Boot', 'Spring Security', 'Angular', 'TypeScript', 'Tailwind CSS', 'PostgreSQL', 'WireGuard'],
     githubUrl: 'https://github.com/NFUChen/wg-control-plane',
     architectureSummary: 'Desired VPN state is stored in PostgreSQL, rendered into WireGuard configuration and a per-rollout Ansible inventory, then applied to managed Linux hosts over SSH. Every run is persisted as a job with status, output, cancellation, and retry.'
+  },
+  {
+    id: 'pgconsole-migration', title: 'pgconsole Schema Migration', period: '2026/5', tooltip: 'Open-source fork',
+    overview: 'Extended pgconsole with an end-to-end, Git-backed PostgreSQL schema migration workflow powered by pgschema, covering migration planning, DDL review, permission-gated apply, and runtime configuration.',
+    architecture: 'Git schema repository → migration service → pgschema plan/apply → PostgreSQL, with React diff and progress UI',
+    technologies: ['TypeScript', 'React', 'Node.js', 'PostgreSQL', 'pgschema', 'Docker', 'Helm', 'GitHub Actions'],
+    features: ['Built a migration service that synchronizes desired SQL schemas from Git, invokes pgschema to compare them with live databases, stores plans with a 30-minute TTL, and streams apply progress and errors to the UI', 'Implemented a React migration panel for grouped schema diffs, DDL previews, confirmation, and permission-gated apply operations', 'Replaced restart-dependent configuration with an opt-in _pgconsole JSONB metadata table and permission-controlled runtime management of schema sources', 'Containerized the integration for amd64/arm64, published images to GHCR, and created a Helm chart with ConfigMap-driven configuration, Ingress, HPA, and automatic rollout on config changes'],
+    description: 'A pgconsole fork that integrates pgschema into the browser-based PostgreSQL workspace, turning schema files stored in Git into reviewable and executable database migration plans.',
+    githubUrl: 'https://github.com/NFUChen/pgconsole'
+  },
+  {
+    id: 'pgschema', title: 'pgschema — Open Source Contributor', period: '2026/5', tooltip: 'Open-source contribution',
+    overview: 'Contributed to a Terraform-style declarative schema migration CLI for PostgreSQL that generates and safely applies migration plans from a desired SQL schema state.',
+    architecture: 'Desired SQL schema → PostgreSQL-aware diff engine → reviewed migration plan → safe apply',
+    technologies: ['Go', 'PostgreSQL', 'Cobra CLI', 'GitHub Actions', 'CI/CD'],
+    features: ['Added apply-command file-extension validation with comprehensive test coverage, preventing unsupported plan inputs from reaching migration execution (merged PR #434)', 'Refactored release CI into a GitHub Actions matrix that tests PostgreSQL 14–18 concurrently, reducing duplication and improving failure visibility (merged PR #432)', 'Explored and proposed support for TOML configuration, multi-schema migrations, column rename detection, and PostgreSQL extensions through upstream PRs'],
+    description: 'Open-source contributions to pgschema, a PostgreSQL-focused CLI that replaces hand-written, sequential migration files with a declarative dump, plan, and apply workflow.',
+    githubUrl: 'https://github.com/pgplex/pgschema'
   }
 ];
