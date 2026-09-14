@@ -46,7 +46,60 @@
   color: transparent;
 }
 
+/* Arrow, card, arrow on one row; the card takes the remaining width. */
+.project-carousel {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.carousel-control {
+  grid-row: 1;
+  align-self: center;
+  box-shadow: 0 10px 26px color-mix(in oklab, var(--color-primary) 30%, transparent);
+}
+
+.carousel-control:first-of-type {
+  grid-column: 1;
+}
+
+.carousel-control:last-of-type {
+  grid-column: 3;
+}
+
+.project-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  margin-top: 1.25rem;
+  color: color-mix(in oklab, var(--color-base-content) 60%, transparent);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.project-dots {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.project-dot {
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 999px;
+  background: color-mix(in oklab, var(--color-base-content) 25%, transparent);
+  transition: width 200ms ease, background-color 200ms ease;
+}
+
+.project-dot.active {
+  width: 1.25rem;
+  background: var(--color-primary);
+}
+
 .project-card {
+  grid-column: 2;
+  grid-row: 1;
   position: relative;
   overflow: hidden;
   border: 1px solid color-mix(in oklab, var(--color-base-content) 10%, transparent);
@@ -177,8 +230,9 @@
     padding-top: 2.5rem;
   }
 
+  /* Stack the card above a single row of controls on narrow screens. */
   .project-carousel {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     align-items: stretch;
     gap: 0.75rem;
   }
@@ -191,5 +245,13 @@
   .carousel-control {
     grid-row: 2;
     justify-self: center;
+  }
+
+  .carousel-control:first-of-type {
+    grid-column: 1;
+  }
+
+  .carousel-control:last-of-type {
+    grid-column: 2;
   }
 }
