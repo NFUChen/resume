@@ -12,6 +12,7 @@ import { TraditionalChineseService } from './traditional-chinese.service';
   styleUrls: ['./chat-bubble.component.css']
 })
 export class ChatBubbleComponent implements OnDestroy {
+  private static readonly STREAM_FRAME_MS = 4;
   private readonly chatService = inject(ChatService);
   private readonly traditionalChinese = inject(TraditionalChineseService);
   private abortController?: AbortController;
@@ -123,11 +124,14 @@ export class ChatBubbleComponent implements OnDestroy {
       const history = this.messages.slice(0, -1);
       for await (const chunk of this.chatService.streamReply(history, this.abortController.signal)) {
         await conversionReady;
-        rawAssistantContent += chunk;
-        assistantMessage.content = convertToTraditional
-          ? this.traditionalChinese.convert(rawAssistantContent)
-          : rawAssistantContent;
-        this.scrollToBottom();
+        for (const character of chunk) {
+          rawAssistantContent += character;
+          assistantMessage.content = convertToTraditional
+            ? this.traditionalChinese.convert(rawAssistantContent)
+            : rawAssistantContent;
+          this.scrollToBottom(false);
+          await this.waitForStreamFrame(this.abortController.signal);
+        }
       }
 
       if (!assistantMessage.content) {
@@ -150,10 +154,23 @@ export class ChatBubbleComponent implements OnDestroy {
     }
   }
 
-  private scrollToBottom(): void {
+  private waitForStreamFrame(signal: AbortSignal): Promise<void> {
+    return new Promise((resolve, reject) => {
+      const timer = setTimeout(resolve, ChatBubbleComponent.STREAM_FRAME_MS);
+      signal.addEventListener('abort', () => {
+        clearTimeout(timer);
+        reject(signal.reason);
+      }, { once: true });
+    });
+  }
+
+  private scrollToBottom(smooth = true): void {
     requestAnimationFrame(() => {
       const element = this.messageList?.nativeElement;
-      element?.scrollTo({ top: element.scrollHeight, behavior: 'smooth' });
+      element?.scrollTo({
+        top: element.scrollHeight,
+        behavior: smooth ? 'smooth' : 'auto'
+      });
     });
   }
 }

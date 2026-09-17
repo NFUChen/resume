@@ -86,4 +86,21 @@ describe('ChatBubbleComponent', () => {
     expect(event.defaultPrevented).toBeTrue();
     expect(streamReply).toHaveBeenCalled();
   });
+
+  it('renders streamed chunks one character at a time', async () => {
+    const streamedContents: string[] = [];
+    streamReply.and.callFake(async function* () {
+      yield 'ABC';
+    });
+    spyOn(component as unknown as { scrollToBottom: () => void }, 'scrollToBottom').and.callFake(() => {
+      const assistantMessage = component.messages.at(-1);
+      if (assistantMessage?.role === 'assistant') {
+        streamedContents.push(assistantMessage.content);
+      }
+    });
+
+    await component.sendMessage();
+
+    expect(streamedContents).toEqual(['', 'A', 'AB', 'ABC', 'ABC']);
+  });
 });
