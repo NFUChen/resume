@@ -3,6 +3,12 @@ export interface AchievementGroup {
   items: string[];
 }
 
+export interface TeamSection {
+  name: string;
+  summary?: string;
+  achievementGroups: AchievementGroup[];
+}
+
 export interface ExperienceItem {
   period: string;
   title: string;
@@ -10,6 +16,7 @@ export interface ExperienceItem {
   summary: string;
   achievements?: string[];
   achievementGroups?: AchievementGroup[];
+  teams?: TeamSection[];
 }
 
 export interface ResumeProject {
@@ -56,15 +63,28 @@ export const EXPERIENCE: ExperienceItem[] = [
   {
     period: 'Sep 2024 - Present',
     title: 'Trend Micro',
-    role: 'Cloud Infrastructure Engineer / Zero Trust Network Access · Security SaaS Platform & AI Infrastructure (TrendAI)',
-    summary: 'Building and automating production infrastructure for a Zero Trust Network Access / Security SaaS platform, and supporting AI infrastructure (Ray/vLLM model serving) for Trend AI.',
-    achievementGroups: [
-      { category: 'Reliability engineering', items: ['Designed and shipped a PoP failover system replacing stale heartbeat checks with Azure Traffic Manager endpoint-health monitoring and Redis distributed locking, improving cross-region VPN connection reliability'] },
-      { category: 'Security automation', items: ['Built and automated a multi-cloud API key and credential rotation pipeline across AWS, Azure, and Oracle Cloud, replacing manual rotation workflows and reducing credential exposure risk'] },
-      { category: 'Infrastructure delivery', items: ['Led end-to-end deployment of a new regional VPN network node in Thailand, from staging through production, including multi-availability-zone architecture design and rollout coordination'] },
-      { category: 'AI serving pipeline', items: ['Improved Ray-based LLM model-serving infrastructure by strengthening Helm chart CI/CD, chart build/version tracking, and JFrog Artifactory OCI image publishing for downstream deployments'] },
-      { category: 'Observability', items: ['Designed Prometheus-based observability for vLLM inference services using Prometheus Operator ServiceMonitor and PrometheusRule, covering availability, latency, and capacity signals'] },
-      { category: 'Incident response', items: ['Introduced tiered alerting for inference availability, latency, and capacity to improve production visibility and reduce incident response time'] }
+    role: 'Cloud Infrastructure Engineer',
+    summary: 'Building and automating production infrastructure across two teams: a Zero Trust Network Access / Security SaaS platform, and AI infrastructure (Ray/vLLM model serving) for Trend AI.',
+    teams: [
+      {
+        name: 'Zero Trust Network Access / Security SaaS Platform',
+        summary: 'Cloud-native infrastructure automation, deployment reliability, and day-to-day operational improvements for production security SaaS services.',
+        achievementGroups: [
+          { category: 'Reliability engineering', items: ['Designed and shipped a PoP failover system replacing stale heartbeat checks with Azure Traffic Manager endpoint-health monitoring and Redis distributed locking, improving cross-region VPN connection reliability'] },
+          { category: 'Security automation', items: ['Built and automated a multi-cloud API key and credential rotation pipeline across AWS, Azure, and Oracle Cloud, replacing manual rotation workflows and reducing credential exposure risk'] },
+          { category: 'Infrastructure delivery', items: ['Led end-to-end deployment of a new regional VPN network node in Thailand, from staging through production, including multi-availability-zone architecture design and rollout coordination'] }
+        ]
+      },
+      {
+        name: 'AI Infrastructure / Trend AI',
+        summary: 'AI infrastructure delivery workflows spanning Kubernetes, Helm, container images, observability, and deployment automation.',
+        achievementGroups: [
+          { category: 'On-premises AI delivery', items: ['Ported and deployed small language model (SLM) inference services to on-premises Kubernetes for TrendAI Vision One for Sovereign and Private Cloud (SPC), enabling self-hosted inference inside customer-controlled infrastructure'] },
+          { category: 'AI serving pipeline', items: ['Improved Ray-based LLM model-serving infrastructure by strengthening Helm chart CI/CD, chart build/version tracking, and JFrog Artifactory OCI image publishing for downstream deployments'] },
+          { category: 'Observability', items: ['Designed Prometheus-based observability for vLLM inference services using Prometheus Operator ServiceMonitor and PrometheusRule, covering availability, latency, and capacity signals'] },
+          { category: 'Incident response', items: ['Introduced tiered alerting for inference availability, latency, and capacity to improve production visibility and reduce incident response time'] }
+        ]
+      }
     ]
   },
   {
