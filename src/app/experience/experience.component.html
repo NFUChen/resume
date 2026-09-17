@@ -18,7 +18,30 @@
               <p class="role">{{ item.role }}</p>
               <p class="summary">{{ item.summary }}</p>
 
-              @if (item.achievementGroups?.length) {
+              @if (item.teams?.length) {
+                <div class="team-sections">
+                  @for (team of item.teams; track team.name) {
+                    <div class="team-section">
+                      <h4 class="team-name">{{ team.name }}</h4>
+                      @if (team.summary) {
+                        <p class="team-summary">{{ team.summary }}</p>
+                      }
+                      <div class="achievement-groups">
+                        @for (group of team.achievementGroups; track group.category) {
+                          <div class="achievement-group">
+                            <h5 class="achievement-category">{{ group.category }}</h5>
+                            <ul class="achievement-items">
+                              @for (bullet of group.items; track bullet) {
+                                <li>{{ bullet }}</li>
+                              }
+                            </ul>
+                          </div>
+                        }
+                      </div>
+                    </div>
+                  }
+                </div>
+              } @else if (item.achievementGroups?.length) {
                 <div class="achievement-groups">
                   @for (group of item.achievementGroups; track group.category) {
                     <div class="achievement-group">
