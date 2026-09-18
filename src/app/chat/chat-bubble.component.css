@@ -237,8 +237,8 @@
 .chat-input textarea {
   width: 100%;
   min-height: 3rem;
-  max-height: 7rem;
-  resize: none;
+  max-height: 50vh;
+  resize: vertical;
 }
 
 @keyframes chat-enter {
