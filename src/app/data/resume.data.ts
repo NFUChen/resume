@@ -46,7 +46,7 @@ export const PROFILE = {
   yearsOfExperience: '4+',
   linkedin: 'https://linkedin.com/in/william-chen-3258a6199',
   github: 'https://github.com/NFUChen',
-  summary: 'Cloud Infrastructure Engineer with 4+ years of experience building and automating production infrastructure across AWS, Azure, Oracle Cloud, and Kubernetes environments. Supports AI infrastructure at Trend Micro through Ray/vLLM model-serving delivery, Helm-based CI/CD, and Prometheus observability for inference services. Brings hands-on Infrastructure-as-Code, deployment automation, cloud networking, and production reliability experience to AI/ML infrastructure operations.'
+  summary: 'Cloud Infrastructure Engineer with 4+ years of experience building and automating production infrastructure across AWS, Azure, Oracle Cloud, and Kubernetes. Reduced the observed upper end of VPN point-of-presence failure-detection time by approximately 70% and replaced a half-day manual multi-cloud credential rotation with a workflow that completes in under a minute. Delivered on-premises LLM inference on Kubernetes under a two-month deadline for a sovereign-cloud offering, and previously built a factory production platform spanning 60 lines that removed an estimated 63 person-hours of manual reconciliation per operating day.'
 } as const;
 
 export const CORE_SKILLS = {
@@ -70,19 +70,18 @@ export const EXPERIENCE: ExperienceItem[] = [
         name: 'Zero Trust Network Access / Security SaaS Platform',
         summary: 'Cloud-native infrastructure automation, deployment reliability, and day-to-day operational improvements for production security SaaS services.',
         achievementGroups: [
-          { category: 'Reliability engineering', items: ['Designed and shipped a PoP failover system replacing stale heartbeat checks with Azure Traffic Manager endpoint-health monitoring and Redis distributed locking, improving cross-region VPN connection reliability'] },
-          { category: 'Security automation', items: ['Built and automated a multi-cloud API key and credential rotation pipeline across AWS, Azure, and Oracle Cloud, replacing manual rotation workflows and reducing credential exposure risk'] },
-          { category: 'Infrastructure delivery', items: ['Led end-to-end deployment of a new regional VPN network node in Thailand, from staging through production, including multi-availability-zone architecture design and rollout coordination'] }
+          { category: 'Reliability engineering', items: ['Cut the observed upper bound on point-of-presence failure detection by approximately 70%, from around 5 minutes to roughly 90 seconds, by replacing stale heartbeat checks with Azure Traffic Manager endpoint-health monitoring and Redis-based coordination; detection is often faster depending on probe timing', 'Eliminated the false-positive failovers previously triggered by IoT Hub outages, removing a recurring source of unnecessary cross-region VPN disruption'] },
+          { category: 'Security automation', items: ['Automated quarterly API key and credential rotation across AWS, Azure, and Oracle Cloud, replacing an approximately 4-hour manual update-and-verification process with a workflow that completes in under 1 minute'] },
+          { category: 'Infrastructure delivery', items: ['Led the staging-to-production rollout of a multi-availability-zone VPN point-of-presence in Thailand, giving in-country customers local VPN termination instead of routing through Singapore'] }
         ]
       },
       {
         name: 'AI Infrastructure / Trend AI',
         summary: 'AI infrastructure delivery workflows spanning Kubernetes, Helm, container images, observability, and deployment automation.',
         achievementGroups: [
-          { category: 'On-premises AI delivery', items: ['Ported and deployed small language model (SLM) inference services to on-premises Kubernetes for TrendAI Vision One for Sovereign and Private Cloud (SPC), enabling self-hosted inference inside customer-controlled infrastructure'] },
-          { category: 'AI serving pipeline', items: ['Improved Ray-based LLM model-serving infrastructure by strengthening Helm chart CI/CD, chart build/version tracking, and JFrog Artifactory OCI image publishing for downstream deployments'] },
-          { category: 'Observability', items: ['Designed Prometheus-based observability for vLLM inference services using Prometheus Operator ServiceMonitor and PrometheusRule, covering availability, latency, and capacity signals'] },
-          { category: 'Incident response', items: ['Introduced tiered alerting for inference availability, latency, and capacity to improve production visibility and reduce incident response time'] }
+          { category: 'On-premises AI delivery', items: ['Delivered LLM and embedding inference services on on-premises Kubernetes within a two-month deadline for the Sovereign and Private Cloud (SPC) offering, enabling self-hosted inference in customer-controlled infrastructure for government use cases'] },
+          { category: 'AI serving pipeline', items: ['Integrated Helm chart CI/CD with versioned OCI artifact publishing to JFrog Artifactory, giving downstream model-serving deployments traceable build versions and pull references'] },
+          { category: 'Observability', items: ['Built Helm-based observability for Ray, vLLM, LiteLLM, and GPU infrastructure using Prometheus Operator ServiceMonitor and PodMonitor, covering inference latency, service availability, GPU health, and capacity signals', 'Authored 18 custom Prometheus alert definitions with severity-based notification routing, splitting critical and warning escalation paths ahead of production rollout'] }
         ]
       }
     ]
@@ -91,10 +90,11 @@ export const EXPERIENCE: ExperienceItem[] = [
     period: 'Sep 2022 - Aug 2024',
     title: 'SRAM',
     role: 'Backend / DevOps Engineer / MES & Factory Digitalization Platform for Industrial Manufacturing',
-    summary: 'Built a production dashboard system end-to-end for a factory digitalization platform, from edge clients to backend services and data storage.',
+    summary: 'Built a factory production monitoring platform end-to-end across 60 production lines in two plants, from Raspberry Pi edge clients through backend services to real-time shop-floor dashboards.',
     achievementGroups: [
-      { category: 'End-to-end system design', items: ['Designed and built a production dashboard system end-to-end, including Raspberry Pi edge clients publishing production data over MQTT, Spring Boot / Javalin microservices, and PostgreSQL / MongoDB / Redis data storage'] },
-      { category: 'Operations & automation', items: ['Implemented real-time production, utilization, and downtime visibility', 'Automated client-server deployment with Docker Compose and Ansible provisioning'] }
+      { category: 'Business impact', items: ['Removed an estimated 63 person-hours of manual work per operating day by automating shift-level production reconciliation, which previously took one operator 30 minutes per line per shift across 60 lines running three shifts at roughly 70% line utilization'] },
+      { category: 'End-to-end system design', items: ['Designed and built the platform end-to-end, including Raspberry Pi edge clients publishing production data over MQTT, Spring Boot / Javalin microservices, and PostgreSQL / MongoDB / Redis data storage'] },
+      { category: 'Operations & automation', items: ['Replaced walk-to-the-line downtime checks with real-time dashboards and audible floor alarms, making stoppages visible without manual line inspections', 'Embedded takt-time tracking into the dashboards to give operators continuous production pacing feedback', 'Automated provisioning and deployment across 60 production stations using Ansible and Docker Compose'] }
     ]
   },
   {
