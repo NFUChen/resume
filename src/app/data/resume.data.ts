@@ -104,7 +104,7 @@ export const EXPERIENCE: ExperienceItem[] = [
     role: 'Backend / DevOps Engineer / MES & Factory Digitalization Platform for Industrial Manufacturing',
     summary: 'Built a factory production monitoring platform end-to-end across **60 production lines** in **two plants**, from Raspberry Pi edge clients through backend services to real-time shop-floor dashboards.',
     achievementGroups: [
-      { category: 'Business impact', items: ['Removed an **estimated 63 person-hours of manual work per operating day** by automating shift-level production reconciliation, which previously took one operator 30 minutes per line per shift across 60 lines running three shifts at roughly 70% line utilization'] },
+      { category: 'Business impact', items: ['Removed an **estimated 63 person-hours** of manual work per operating day by automating shift-level production reconciliation, which previously took one operator 30 minutes per line per shift across 60 lines running three shifts at roughly 70% line utilization'] },
       { category: 'End-to-end system design', items: ['Designed and built the platform end-to-end, including Raspberry Pi edge clients publishing production data over MQTT, Spring Boot / Javalin microservices, and PostgreSQL / MongoDB / Redis data storage'] },
       { category: 'Operations & automation', items: ['Replaced walk-to-the-line downtime checks with real-time dashboards and audible floor alarms, making stoppages visible without manual line inspections', 'Embedded takt-time tracking into the dashboards to give operators continuous production pacing feedback', 'Automated provisioning and deployment across **60 production stations** using Ansible and Docker Compose'] }
     ]
