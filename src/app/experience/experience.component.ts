@@ -1,12 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { CursorSpotlightDirective } from '../components/cursor-spotlight.directive';
+import { GlossaryTooltipComponent } from '../components/glossary-tooltip.component';
 import { EXPERIENCE, ExperienceItem } from '../data/resume.data';
 
 @Component({
   selector: 'app-experience',
   standalone: true,
-  imports: [CommonModule, CursorSpotlightDirective],
+  imports: [CommonModule, CursorSpotlightDirective, GlossaryTooltipComponent],
   templateUrl: './experience.component.html',
   styleUrls: ['./experience.component.css']
 })

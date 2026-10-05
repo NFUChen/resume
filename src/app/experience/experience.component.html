@@ -26,6 +26,13 @@
                       @if (team.summary) {
                         <p class="team-summary">{{ team.summary }}</p>
                       }
+                      @if (team.glossary?.length) {
+                        <div class="team-glossary">
+                          @for (entry of team.glossary; track entry.term) {
+                            <app-glossary-tooltip [term]="entry.term" [definition]="entry.definition" />
+                          }
+                        </div>
+                      }
                       <div class="achievement-groups">
                         @for (group of team.achievementGroups; track group.category) {
                           <div class="achievement-group">
