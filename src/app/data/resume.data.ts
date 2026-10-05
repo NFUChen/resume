@@ -82,7 +82,7 @@ export const EXPERIENCE: ExperienceItem[] = [
           }
         ],
         achievementGroups: [
-          { category: 'Reliability engineering', items: ['Cut the observed upper bound on point-of-presence failure detection by approximately 70%, from around 5 minutes to roughly 90 seconds, by replacing stale heartbeat checks with Azure Traffic Manager endpoint-health monitoring and Redis-based coordination; detection is often faster depending on probe timing', 'Eliminated the false-positive failovers previously triggered by IoT Hub outages, removing a recurring source of unnecessary cross-region VPN disruption'] },
+          { category: 'Reliability engineering', items: ['Cut the observed upper bound on point-of-presence failure detection by approximately 70%, from around 5 minutes to roughly 90 seconds, by replacing stale heartbeat checks with Azure Traffic Manager endpoint-health monitoring and Redis-based coordination; detection is often faster depending on probe timing', 'Eliminated a recurring class of false-positive failovers triggered by IoT Hub outages by decoupling PoP health checks from IoT Hub heartbeat delivery'] },
           { category: 'Security automation', items: ['Automated quarterly API key and credential rotation across AWS, Azure, and Oracle Cloud, replacing an approximately 4-hour manual update-and-verification process with a workflow that completes in under 1 minute'] },
           { category: 'Infrastructure delivery', items: ['Led the staging-to-production rollout of a multi-availability-zone point of presence in Thailand, replacing cross-border routing through Singapore with local termination and cutting measured round-trip time by over 80% in customer-environment connectivity tests'] }
         ]
