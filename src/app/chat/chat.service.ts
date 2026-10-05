@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CORE_SKILLS, EXPERIENCE, PROFILE, PROJECTS } from '../data/resume.data';
+import { stripResumeMarkup } from '../components/resume-text';
 import { CHAT_CONFIG } from './chat.config';
 
 export interface ChatMessage {
@@ -22,10 +23,34 @@ function buildResumeContext(): string {
 
   const experience = EXPERIENCE
     .map(item => {
-      const achievements = item.achievementGroups
-        ?.flatMap(group => group.items.map(detail => `  - ${group.category}: ${detail}`))
-        .join('\n');
-      return `- ${item.title} | ${item.role} | ${item.period}\n  Summary: ${item.summary}${achievements ? `\n${achievements}` : ''}`;
+      const lines = [
+        `- ${item.title} | ${item.role} | ${item.period}`,
+        `  Summary: ${stripResumeMarkup(item.summary)}`
+      ];
+
+      for (const group of item.achievementGroups ?? []) {
+        for (const detail of group.items) {
+          lines.push(`  - ${group.category}: ${stripResumeMarkup(detail)}`);
+        }
+      }
+
+      for (const achievement of item.achievements ?? []) {
+        lines.push(`  - ${stripResumeMarkup(achievement)}`);
+      }
+
+      for (const team of item.teams ?? []) {
+        lines.push(`  Team: ${team.name}`);
+        if (team.summary) {
+          lines.push(`    Summary: ${stripResumeMarkup(team.summary)}`);
+        }
+        for (const group of team.achievementGroups) {
+          for (const detail of group.items) {
+            lines.push(`    - ${group.category}: ${stripResumeMarkup(detail)}`);
+          }
+        }
+      }
+
+      return lines.join('\n');
     })
     .join('\n');
 

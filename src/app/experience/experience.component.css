@@ -230,13 +230,6 @@
   line-height: 1.6;
 }
 
-.team-glossary {
-  margin-top: 0.55rem;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-}
-
 /* 分類列點結構 */
 .achievement-groups {
   margin-top: 1rem;

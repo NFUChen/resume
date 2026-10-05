@@ -8,7 +8,7 @@ import { Component, Input } from '@angular/core';
   selector: 'app-glossary-tooltip',
   standalone: true,
   template: `
-    <span class="glossary-tooltip tooltip" [attr.data-tip]="definition">
+    <span class="glossary-tooltip tooltip" [class.glossary-inline]="inline" [attr.data-tip]="definition">
       <span class="glossary-term" tabindex="0" role="note" [attr.aria-label]="term + ': ' + definition">
         <svg class="glossary-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <circle cx="12" cy="12" r="9" />
@@ -68,9 +68,40 @@ import { Component, Input } from '@angular/core';
       flex-shrink: 0;
       opacity: 0.7;
     }
+
+    /* Inline variant: sits inside a sentence, so it drops the chip shape and
+       inherits the surrounding type instead of interrupting the prose. */
+    .glossary-inline {
+      vertical-align: baseline;
+    }
+
+    .glossary-inline .glossary-icon {
+      display: none;
+    }
+
+    .glossary-inline .glossary-term {
+      padding: 0;
+      border: 0;
+      border-bottom: 1px dotted oklch(from var(--color-base-content) l c h / 0.45);
+      border-radius: 0;
+      background: none;
+      color: inherit;
+      font-size: inherit;
+      font-weight: inherit;
+      line-height: inherit;
+    }
+
+    .glossary-inline .glossary-term:hover,
+    .glossary-inline .glossary-term:focus-visible {
+      color: var(--color-primary);
+      border-bottom-color: oklch(from var(--color-primary) l c h / 0.6);
+      background: none;
+    }
   `]
 })
 export class GlossaryTooltipComponent {
   @Input({ required: true }) term!: string;
   @Input({ required: true }) definition!: string;
+  /** Renders without the chip framing, for terms used inside a sentence. */
+  @Input() inline = false;
 }

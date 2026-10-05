@@ -82,16 +82,16 @@ export const EXPERIENCE: ExperienceItem[] = [
           }
         ],
         achievementGroups: [
-          { category: 'Reliability engineering', items: ['Cut the observed upper bound on point-of-presence failure detection by approximately 70%, from around 5 minutes to roughly 90 seconds, by replacing stale heartbeat checks with Azure Traffic Manager endpoint-health monitoring and Redis-based coordination; detection is often faster depending on probe timing', 'Eliminated a recurring class of false-positive failovers triggered by IoT Hub outages by decoupling PoP health checks from IoT Hub heartbeat delivery'] },
-          { category: 'Security automation', items: ['Automated quarterly API key and credential rotation across AWS, Azure, and Oracle Cloud, replacing an approximately 4-hour manual update-and-verification process with a workflow that completes in under 1 minute'] },
-          { category: 'Infrastructure delivery', items: ['Led the staging-to-production rollout of a multi-availability-zone point of presence in Thailand, replacing cross-border routing through Singapore with local termination and cutting measured round-trip time by over 80% in customer-environment connectivity tests'] }
+          { category: 'Reliability engineering', items: ['Cut the observed upper bound on [[point-of-presence|point of presence]] failure detection by **approximately 70%**, from **around 5 minutes** to **roughly 90 seconds**, by replacing stale heartbeat checks with Azure Traffic Manager endpoint-health monitoring and Redis-based coordination; detection is often faster depending on probe timing', 'Eliminated a recurring class of false-positive failovers triggered by IoT Hub outages by decoupling [[PoP|point of presence]] health checks from IoT Hub heartbeat delivery'] },
+          { category: 'Security automation', items: ['Automated quarterly API key and credential rotation across AWS, Azure, and Oracle Cloud, replacing an **approximately 4-hour** manual update-and-verification process with a workflow that completes in **under 1 minute**'] },
+          { category: 'Infrastructure delivery', items: ['Led the staging-to-production rollout of a multi-availability-zone [[point of presence]] in Thailand, replacing cross-border routing through Singapore with local termination and cutting measured round-trip time by **over 80%** in customer-environment connectivity tests'] }
         ]
       },
       {
         name: 'AI Infrastructure / Trend AI',
         summary: 'AI infrastructure delivery workflows spanning Kubernetes, Helm, container images, observability, and deployment automation.',
         achievementGroups: [
-          { category: 'On-premises AI delivery', items: ['Delivered LLM and embedding inference services on on-premises Kubernetes within a two-month deadline for the Sovereign and Private Cloud (SPC) offering, enabling self-hosted inference in customer-controlled infrastructure for government use cases'] },
+          { category: 'On-premises AI delivery', items: ['Delivered LLM and embedding inference services on on-premises Kubernetes within a **two-month deadline** for the Sovereign and Private Cloud (SPC) offering, enabling self-hosted inference in customer-controlled infrastructure for government use cases'] },
           { category: 'AI serving pipeline', items: ['Integrated Helm chart CI/CD with versioned OCI artifact publishing to JFrog Artifactory, giving downstream model-serving deployments traceable build versions and pull references'] },
           { category: 'Observability', items: ['Developed a Helm-based observability and alerting design for Ray/vLLM inference, mapping service availability, latency degradation, GPU faults, and capacity-pressure signals to severity-based escalation paths'] }
         ]
@@ -102,11 +102,11 @@ export const EXPERIENCE: ExperienceItem[] = [
     period: 'Sep 2022 - Aug 2024',
     title: 'SRAM',
     role: 'Backend / DevOps Engineer / MES & Factory Digitalization Platform for Industrial Manufacturing',
-    summary: 'Built a factory production monitoring platform end-to-end across 60 production lines in two plants, from Raspberry Pi edge clients through backend services to real-time shop-floor dashboards.',
+    summary: 'Built a factory production monitoring platform end-to-end across **60 production lines** in **two plants**, from Raspberry Pi edge clients through backend services to real-time shop-floor dashboards.',
     achievementGroups: [
-      { category: 'Business impact', items: ['Removed an estimated 63 person-hours of manual work per operating day by automating shift-level production reconciliation, which previously took one operator 30 minutes per line per shift across 60 lines running three shifts at roughly 70% line utilization'] },
+      { category: 'Business impact', items: ['Removed an **estimated 63 person-hours of manual work per operating day** by automating shift-level production reconciliation, which previously took one operator 30 minutes per line per shift across 60 lines running three shifts at roughly 70% line utilization'] },
       { category: 'End-to-end system design', items: ['Designed and built the platform end-to-end, including Raspberry Pi edge clients publishing production data over MQTT, Spring Boot / Javalin microservices, and PostgreSQL / MongoDB / Redis data storage'] },
-      { category: 'Operations & automation', items: ['Replaced walk-to-the-line downtime checks with real-time dashboards and audible floor alarms, making stoppages visible without manual line inspections', 'Embedded takt-time tracking into the dashboards to give operators continuous production pacing feedback', 'Automated provisioning and deployment across 60 production stations using Ansible and Docker Compose'] }
+      { category: 'Operations & automation', items: ['Replaced walk-to-the-line downtime checks with real-time dashboards and audible floor alarms, making stoppages visible without manual line inspections', 'Embedded takt-time tracking into the dashboards to give operators continuous production pacing feedback', 'Automated provisioning and deployment across **60 production stations** using Ansible and Docker Compose'] }
     ]
   },
   {
