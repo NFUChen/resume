@@ -93,7 +93,7 @@ export const EXPERIENCE: ExperienceItem[] = [
         achievementGroups: [
           { category: 'On-premises AI delivery', items: ['Delivered LLM and embedding inference services on on-premises Kubernetes within a two-month deadline for the Sovereign and Private Cloud (SPC) offering, enabling self-hosted inference in customer-controlled infrastructure for government use cases'] },
           { category: 'AI serving pipeline', items: ['Integrated Helm chart CI/CD with versioned OCI artifact publishing to JFrog Artifactory, giving downstream model-serving deployments traceable build versions and pull references'] },
-          { category: 'Observability', items: ['Built Helm-based observability for Ray, vLLM, LiteLLM, and GPU infrastructure using Prometheus Operator ServiceMonitor and PodMonitor, covering inference latency, service availability, GPU health, and capacity signals', 'Authored 18 custom Prometheus alert definitions with severity-based notification routing, splitting critical and warning escalation paths ahead of production rollout'] }
+          { category: 'Observability', items: ['Developed a Helm-based observability and alerting design for Ray/vLLM inference, mapping service availability, latency degradation, GPU faults, and capacity-pressure signals to severity-based escalation paths'] }
         ]
       }
     ]
