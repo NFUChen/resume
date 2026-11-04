@@ -32,6 +32,9 @@ function buildResumeContext(): string {
         for (const detail of group.items) {
           lines.push(`  - ${group.category}: ${stripResumeMarkup(detail)}`);
         }
+        if (group.techStack?.length) {
+          lines.push(`  - ${group.category} tech stack: ${group.techStack.join(', ')}`);
+        }
       }
 
       for (const achievement of item.achievements ?? []) {
@@ -46,6 +49,9 @@ function buildResumeContext(): string {
         for (const group of team.achievementGroups) {
           for (const detail of group.items) {
             lines.push(`    - ${group.category}: ${stripResumeMarkup(detail)}`);
+          }
+          if (group.techStack?.length) {
+            lines.push(`    - ${group.category} tech stack: ${group.techStack.join(', ')}`);
           }
         }
       }
