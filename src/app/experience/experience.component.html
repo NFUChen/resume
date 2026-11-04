@@ -35,6 +35,13 @@
                                 <li><app-resume-text [text]="bullet" [glossary]="team.glossary ?? []" /></li>
                               }
                             </ul>
+                            @if (group.techStack?.length) {
+                              <div class="tech-stack" aria-label="Tech stack">
+                                @for (tech of group.techStack; track tech) {
+                                  <span class="badge badge-soft badge-primary badge-sm tech-badge">{{ tech }}</span>
+                                }
+                              </div>
+                            }
                           </div>
                         }
                       </div>
@@ -51,6 +58,13 @@
                           <li><app-resume-text [text]="bullet" /></li>
                         }
                       </ul>
+                      @if (group.techStack?.length) {
+                        <div class="tech-stack" aria-label="Tech stack">
+                          @for (tech of group.techStack; track tech) {
+                            <span class="badge badge-soft badge-primary badge-sm tech-badge">{{ tech }}</span>
+                          }
+                        </div>
+                      }
                     </div>
                   }
                 </div>

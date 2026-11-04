@@ -1,6 +1,7 @@
 export interface AchievementGroup {
   category: string;
   items: string[];
+  techStack?: string[];
 }
 
 export interface GlossaryTerm {
@@ -52,7 +53,7 @@ export const PROFILE = {
   yearsOfExperience: '4+',
   linkedin: 'https://linkedin.com/in/william-chen-3258a6199',
   github: 'https://github.com/NFUChen',
-  summary: 'Cloud Infrastructure Engineer with 4+ years of experience building and automating production infrastructure across AWS, Azure, Oracle Cloud, and Kubernetes. Reduced the observed upper end of VPN point-of-presence failure-detection time by approximately 70% and replaced a half-day manual multi-cloud credential rotation with a workflow that completes in under a minute. Delivered on-premises LLM inference on Kubernetes under a two-month deadline for a sovereign-cloud offering, and previously built a factory production platform spanning 60 lines that eliminated an estimated 63 person-hours of manual reconciliation effort per operating day.'
+  summary: 'Cloud Infrastructure Engineer with 4+ years of experience building and automating production infrastructure across AWS, Azure, Oracle Cloud, and Kubernetes. Reduced the observed upper end of VPN point-of-presence failure-detection time by approximately 70% and replaced a half-day manual multi-cloud credential rotation with a workflow that completes in under a minute. Delivered on-premises LLM inference on Kubernetes under a two-month deadline for a sovereign-cloud offering, built daily GPU cost visibility by team and model across 39 AI model deployments, and previously built a factory production platform spanning 60 lines that eliminated an estimated 63 person-hours of manual reconciliation effort per operating day.'
 } as const;
 
 export const CORE_SKILLS = {
@@ -82,8 +83,8 @@ export const EXPERIENCE: ExperienceItem[] = [
           }
         ],
         achievementGroups: [
-          { category: 'Reliability engineering', items: ['Cut the observed upper bound on [[point-of-presence|point of presence]] failure detection by **approximately 70%**, from **around 5 minutes** to **roughly 90 seconds**, by replacing stale heartbeat checks with Azure Traffic Manager endpoint-health monitoring and Redis-based coordination; detection is often faster depending on probe timing', 'Eliminated a recurring class of false-positive failovers triggered by IoT Hub outages by decoupling [[PoP|point of presence]] health checks from IoT Hub heartbeat delivery'] },
-          { category: 'Security automation', items: ['Automated quarterly API key and credential rotation across AWS, Azure, and Oracle Cloud, replacing an **approximately 4-hour** manual update-and-verification process with a workflow that completes in **under 1 minute**'] },
+          { category: 'Reliability engineering', items: ['Cut the observed upper bound on [[point-of-presence|point of presence]] failure detection by **approximately 70%**, from **around 5 minutes** to **roughly 90 seconds**, by replacing stale heartbeat checks with Azure Traffic Manager endpoint-health monitoring and Redis-based coordination; detection is often faster depending on probe timing', 'Eliminated a recurring class of false-positive failovers triggered by IoT Hub outages by decoupling [[PoP|point of presence]] health checks from IoT Hub heartbeat delivery'], techStack: ['Azure Traffic Manager', 'Redis', 'Azure IoT Hub'] },
+          { category: 'Security automation', items: ['Automated quarterly API key and credential rotation across AWS, Azure, and Oracle Cloud, replacing an **approximately 4-hour** manual update-and-verification process with a workflow that completes in **under 1 minute**'], techStack: ['AWS', 'Microsoft Azure', 'Oracle Cloud Infrastructure'] },
           { category: 'Infrastructure delivery', items: ['Led the staging-to-production rollout of a multi-availability-zone [[point of presence]] in Thailand, replacing cross-border routing through Singapore with local termination and cutting measured round-trip time by **over 80%** in customer-environment connectivity tests'] }
         ]
       },
@@ -91,9 +92,10 @@ export const EXPERIENCE: ExperienceItem[] = [
         name: 'AI Infrastructure / Trend AI',
         summary: 'AI infrastructure delivery workflows spanning Kubernetes, Helm, container images, observability, and deployment automation.',
         achievementGroups: [
-          { category: 'On-premises AI delivery', items: ['Delivered LLM and embedding inference services on on-premises Kubernetes within a **two-month deadline** for the Sovereign and Private Cloud (SPC) offering, enabling self-hosted inference in customer-controlled infrastructure for government use cases'] },
-          { category: 'AI serving pipeline', items: ['Integrated Helm chart CI/CD with versioned OCI artifact publishing to JFrog Artifactory, giving downstream model-serving deployments traceable build versions and pull references'] },
-          { category: 'Observability', items: ['Developed a Helm-based observability and alerting design for Ray/vLLM inference, mapping service availability, latency degradation, GPU faults, and capacity-pressure signals to severity-based escalation paths'] }
+          { category: 'On-premises AI delivery', items: ['Delivered LLM and embedding inference services on on-premises Kubernetes within a **two-month deadline** for the Sovereign and Private Cloud (SPC) offering, enabling self-hosted inference in customer-controlled infrastructure for government use cases'], techStack: ['Kubernetes', 'Helm', 'vLLM'] },
+          { category: 'AI serving pipeline', items: ['Integrated Helm chart CI/CD with versioned OCI artifact publishing to JFrog Artifactory, giving downstream model-serving deployments traceable build versions and pull references'], techStack: ['Helm', 'GitHub Actions', 'JFrog Artifactory', 'OCI artifacts'] },
+          { category: 'Observability', items: ['Developed a Helm-based observability and alerting design for Ray/vLLM inference, mapping service availability, latency degradation, GPU faults, and capacity-pressure signals to severity-based escalation paths'], techStack: ['Prometheus', 'Alertmanager', 'Grafana', 'Helm', 'Ray', 'vLLM'] },
+          { category: 'GPU cost & business insight', items: ['Built an automated daily pipeline that combines cluster GPU usage with the AWS bill and publishes GPU cost by team and by model to a shared dashboard', 'Gave leadership and product teams their first daily view of GPU spend by team and by model across **39 AI model deployments**, turning GPU cost from one shared cloud bill into costs each team owns', 'Enabled build-vs-buy decisions by reporting each model\'s **cost per 1M tokens** next to the price of the same tokens from commercial LLM APIs, showing which self-hosted models pay off and which would be cheaper to buy', 'Turned GPU usage into capacity-planning signals: the always-on GPU baseline for Savings Plan sizing, idle capacity that can be consolidated, and teams blocked waiting for GPUs'], techStack: ['Python', 'Kubernetes CronJob', 'Prometheus', 'AWS Cost Explorer', 'Amazon S3', 'Amazon Athena', 'Grafana', 'Terraform', 'Helm'] }
         ]
       }
     ]
@@ -105,8 +107,8 @@ export const EXPERIENCE: ExperienceItem[] = [
     summary: 'Built a factory production monitoring platform end-to-end across **60 production lines** in **two plants**, from Raspberry Pi edge clients through backend services to real-time shop-floor dashboards.',
     achievementGroups: [
       { category: 'Business impact', items: ['Eliminated an **estimated 63 person-hours of manual reconciliation effort per operating day** by automating shift-level production reconciliation, replacing a process that took one operator 30 minutes per line per shift across 60 lines running three shifts at a long-run average line-open rate of roughly 70%'] },
-      { category: 'End-to-end system design', items: ['Designed and built the platform end-to-end, including Raspberry Pi edge clients publishing production data over MQTT, Spring Boot / Javalin microservices, and PostgreSQL / MongoDB / Redis data storage'] },
-      { category: 'Operations & automation', items: ['Replaced walk-to-the-line downtime checks with real-time dashboards and audible floor alarms, making stoppages visible without manual line inspections', 'Embedded takt-time tracking into the dashboards to give operators continuous production pacing feedback', 'Automated provisioning and deployment across **60 production stations** using Ansible and Docker Compose'] }
+      { category: 'End-to-end system design', items: ['Designed and built the platform end-to-end, including Raspberry Pi edge clients publishing production data over MQTT, Spring Boot / Javalin microservices, and PostgreSQL / MongoDB / Redis data storage'], techStack: ['Raspberry Pi', 'MQTT', 'Spring Boot', 'Javalin', 'PostgreSQL', 'MongoDB', 'Redis'] },
+      { category: 'Operations & automation', items: ['Replaced walk-to-the-line downtime checks with real-time dashboards and audible floor alarms, making stoppages visible without manual line inspections', 'Embedded takt-time tracking into the dashboards to give operators continuous production pacing feedback', 'Automated provisioning and deployment across **60 production stations** using Ansible and Docker Compose'], techStack: ['Ansible', 'Docker Compose'] }
     ]
   },
   {
