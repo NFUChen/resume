@@ -74,6 +74,16 @@ export const EXPERIENCE: ExperienceItem[] = [
     summary: 'Building and automating production infrastructure across two teams: a Zero Trust Network Access / Security SaaS platform, and AI infrastructure (Ray/vLLM model serving) for Trend AI.',
     teams: [
       {
+        name: 'AI Infrastructure / Trend AI',
+        summary: 'AI infrastructure delivery workflows spanning Kubernetes, Helm, container images, observability, and deployment automation.',
+        achievementGroups: [
+          { category: 'On-premises AI delivery', items: ['Delivered LLM and embedding inference services on on-premises Kubernetes within a **two-month deadline** for the Sovereign and Private Cloud (SPC) offering, enabling self-hosted inference in customer-controlled infrastructure for government use cases'], techStack: ['Kubernetes', 'Helm', 'vLLM'] },
+          { category: 'AI serving pipeline', items: ['Integrated Helm chart CI/CD with versioned OCI artifact publishing to JFrog Artifactory, giving downstream model-serving deployments traceable build versions and pull references'], techStack: ['Helm', 'GitHub Actions', 'JFrog Artifactory', 'OCI artifacts'] },
+          { category: 'Observability', items: ['Developed a Helm-based observability and alerting design for Ray/vLLM inference, mapping service availability, latency degradation, GPU faults, and capacity-pressure signals to severity-based escalation paths'], techStack: ['Prometheus', 'Alertmanager', 'Grafana', 'Helm', 'Ray', 'vLLM'] },
+          { category: 'GPU cost & business insight', items: ['Built an automated daily pipeline that combines cluster GPU usage with the AWS bill and publishes GPU cost by team and by model to a shared dashboard', 'Gave leadership and product teams their first daily view of GPU spend by team and by model across **39 AI model deployments**, turning GPU cost from one shared cloud bill into costs each team owns', 'Enabled build-vs-buy decisions by reporting each model\'s **cost per 1M tokens** next to the price of the same tokens from commercial LLM APIs, showing which self-hosted models pay off and which would be cheaper to buy', 'Turned GPU usage into capacity-planning signals: the always-on GPU baseline for Savings Plan sizing, idle capacity that can be consolidated, and teams blocked waiting for GPUs'], techStack: ['Python', 'Kubernetes CronJob', 'Prometheus', 'AWS Cost Explorer', 'Amazon S3', 'Amazon Athena', 'Grafana', 'Terraform', 'Helm'] }
+        ]
+      },
+      {
         name: 'Zero Trust Network Access / Security SaaS Platform',
         summary: 'Cloud-native infrastructure automation, deployment reliability, and day-to-day operational improvements for production security SaaS services.',
         glossary: [
@@ -86,16 +96,6 @@ export const EXPERIENCE: ExperienceItem[] = [
           { category: 'Reliability engineering', items: ['Cut the observed upper bound on [[point-of-presence|point of presence]] failure detection by **approximately 70%**, from **around 5 minutes** to **roughly 90 seconds**, by replacing stale heartbeat checks with Azure Traffic Manager endpoint-health monitoring and Redis-based coordination; detection is often faster depending on probe timing', 'Eliminated a recurring class of false-positive failovers triggered by IoT Hub outages by decoupling [[PoP|point of presence]] health checks from IoT Hub heartbeat delivery'], techStack: ['Azure Traffic Manager', 'Redis', 'Azure IoT Hub'] },
           { category: 'Security automation', items: ['Automated quarterly API key and credential rotation across AWS, Azure, and Oracle Cloud, replacing an **approximately 4-hour** manual update-and-verification process with a workflow that completes in **under 1 minute**'], techStack: ['AWS', 'Microsoft Azure', 'Oracle Cloud Infrastructure'] },
           { category: 'Infrastructure delivery', items: ['Led the staging-to-production rollout of a multi-availability-zone [[point of presence]] in Thailand, replacing cross-border routing through Singapore with local termination and cutting measured round-trip time by **over 80%** in customer-environment connectivity tests'] }
-        ]
-      },
-      {
-        name: 'AI Infrastructure / Trend AI',
-        summary: 'AI infrastructure delivery workflows spanning Kubernetes, Helm, container images, observability, and deployment automation.',
-        achievementGroups: [
-          { category: 'On-premises AI delivery', items: ['Delivered LLM and embedding inference services on on-premises Kubernetes within a **two-month deadline** for the Sovereign and Private Cloud (SPC) offering, enabling self-hosted inference in customer-controlled infrastructure for government use cases'], techStack: ['Kubernetes', 'Helm', 'vLLM'] },
-          { category: 'AI serving pipeline', items: ['Integrated Helm chart CI/CD with versioned OCI artifact publishing to JFrog Artifactory, giving downstream model-serving deployments traceable build versions and pull references'], techStack: ['Helm', 'GitHub Actions', 'JFrog Artifactory', 'OCI artifacts'] },
-          { category: 'Observability', items: ['Developed a Helm-based observability and alerting design for Ray/vLLM inference, mapping service availability, latency degradation, GPU faults, and capacity-pressure signals to severity-based escalation paths'], techStack: ['Prometheus', 'Alertmanager', 'Grafana', 'Helm', 'Ray', 'vLLM'] },
-          { category: 'GPU cost & business insight', items: ['Built an automated daily pipeline that combines cluster GPU usage with the AWS bill and publishes GPU cost by team and by model to a shared dashboard', 'Gave leadership and product teams their first daily view of GPU spend by team and by model across **39 AI model deployments**, turning GPU cost from one shared cloud bill into costs each team owns', 'Enabled build-vs-buy decisions by reporting each model\'s **cost per 1M tokens** next to the price of the same tokens from commercial LLM APIs, showing which self-hosted models pay off and which would be cheaper to buy', 'Turned GPU usage into capacity-planning signals: the always-on GPU baseline for Savings Plan sizing, idle capacity that can be consolidated, and teams blocked waiting for GPUs'], techStack: ['Python', 'Kubernetes CronJob', 'Prometheus', 'AWS Cost Explorer', 'Amazon S3', 'Amazon Athena', 'Grafana', 'Terraform', 'Helm'] }
         ]
       }
     ]

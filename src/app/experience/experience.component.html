@@ -5,10 +5,23 @@
         <span class="experience-kicker">CAREER JOURNEY</span>
         <h2>Professional Experience &amp; Education</h2>
       </div>
+      <div class="sort-toggle join" role="group" aria-label="Sort experience by date">
+        @for (option of sortOptions; track option.value) {
+          <button
+            type="button"
+            class="btn btn-sm join-item"
+            [class.btn-primary]="sortOrder() === option.value"
+            [attr.aria-pressed]="sortOrder() === option.value"
+            [attr.data-sort-order]="option.value"
+            (click)="setSortOrder(option.value)">
+            {{ option.label }}
+          </button>
+        }
+      </div>
     </header>
 
     <div class="career-timeline">
-      @for (item of timeline; track item.period; let index = $index) {
+      @for (item of timeline(); track item.period; let index = $index) {
         <article class="career-timeline-item rise-in" [style.animation-delay.ms]="index * 110">
           <div class="career-timeline-marker" aria-hidden="true"></div>
           <div class="career-timeline-content">
